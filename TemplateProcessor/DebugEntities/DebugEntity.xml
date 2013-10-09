@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>tb_loja</Name>
+  <DBName>db_debug</DBName>
+  <Columns>
+    <Column>
+      <Name>cd_loja</Name>
+      <DbType>int(11)</DbType>
+      <IsNullAble>false</IsNullAble>
+      <IsPK>true</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>true</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>cd_externo_protege</Name>
+      <DbType>varchar(50)</DbType>
+      <IsNullAble>true</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>cd_externo_banco_brasil</Name>
+      <DbType>varchar(50)</DbType>
+      <IsNullAble>true</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>cd_tipo_loja</Name>
+      <DbType>int(11)</DbType>
+      <IsNullAble>false</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>true</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>nm_loja</Name>
+      <DbType>varchar(255)</DbType>
+      <IsNullAble>false</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>nm_logradouro</Name>
+      <DbType>varchar(255)</DbType>
+      <IsNullAble>true</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>nu_endereco</Name>
+      <DbType>int(11)</DbType>
+      <IsNullAble>true</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>ds_complemento</Name>
+      <DbType>varchar(255)</DbType>
+      <IsNullAble>true</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>nm_bairro</Name>
+      <DbType>varchar(255)</DbType>
+      <IsNullAble>true</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>nm_cidade</Name>
+      <DbType>varchar(255)</DbType>
+      <IsNullAble>true</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>sg_uf</Name>
+      <DbType>char(2)</DbType>
+      <IsNullAble>true</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>true</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>nu_telefone</Name>
+      <DbType>decimal(10,0)</DbType>
+      <IsNullAble>true</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>ic_alivio_diario</Name>
+      <DbType>bit(1)</DbType>
+      <IsNullAble>false</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>vl_maximo_fechamento</Name>
+      <DbType>decimal(10,2)</DbType>
+      <IsNullAble>false</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>dt_cadastro</Name>
+      <DbType>datetime</DbType>
+      <IsNullAble>false</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>vl_limite_monitoramento</Name>
+      <DbType>decimal(10,2)</DbType>
+      <IsNullAble>true</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>vl_limite_caixas</Name>
+      <DbType>decimal(10,2)</DbType>
+      <IsNullAble>true</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>ic_monitorada</Name>
+      <DbType>bit(1)</DbType>
+      <IsNullAble>true</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>dt_periodo_comercial</Name>
+      <DbType>varchar(45)</DbType>
+      <IsNullAble>false</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>dt_periodo_sabado</Name>
+      <DbType>varchar(15)</DbType>
+      <IsNullAble>true</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>qt_pdv</Name>
+      <DbType>int(11)</DbType>
+      <IsNullAble>true</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>ic_comercializacao</Name>
+      <DbType>bit(1)</DbType>
+      <IsNullAble>false</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>dt_ultima_atualizacao</Name>
+      <DbType>datetime</DbType>
+      <IsNullAble>false</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>ds_url_cameras</Name>
+      <DbType>varchar(100)</DbType>
+      <IsNullAble>true</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>nm_usuario_cameras</Name>
+      <DbType>varchar(50)</DbType>
+      <IsNullAble>true</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+    <Column>
+      <Name>ds_senha_cameras</Name>
+      <DbType>varchar(50)</DbType>
+      <IsNullAble>true</IsNullAble>
+      <IsPK>false</IsPK>
+      <IsFK>false</IsFK>
+      <IsAI>false</IsAI>
+      <IsUN>false</IsUN>
+    </Column>
+  </Columns>
+  <ToOneTables>
+    <Table>
+      <Name>tb_tipo_loja</Name>
+      <DBName>db_brasvalor</DBName>
+      <FKList />
+      <FKPKList />
+      <AIList />
+      <PKAIList />
+      <PKList />
+      <UNList />
+      <NonFKList />
+      <NonNullAble />
+      <NonPKList />
+    </Table>
+    <Table>
+      <Name>tb_uf</Name>
+      <DBName>db_brasvalor</DBName>
+      <FKList />
+      <FKPKList />
+      <AIList />
+      <PKAIList />
+      <PKList />
+      <UNList />
+      <NonFKList />
+      <NonNullAble />
+      <NonPKList />
+    </Table>
+  </ToOneTables>
+  <ToManyTables>
+    <Table>
+      <Name>tb_acerto_manual</Name>
+      <DBName>db_brasvalor</DBName>
+      <FKList />
+      <FKPKList />
+      <AIList />
+      <PKAIList />
+      <PKList />
+      <UNList />
+      <NonFKList />
+      <NonNullAble />
+      <NonPKList />
+    </Table>
+    <Table>
+      <Name>tb_cliente_malote</Name>
+      <DBName>db_brasvalor</DBName>
+      <FKList />
+      <FKPKList />
+      <AIList />
+      <PKAIList />
+      <PKList />
+      <UNList />
+      <NonFKList />
+      <NonNullAble />
+      <NonPKList />
+    </Table>
+    <Table>
+      <Name>tb_cofre</Name>
+      <DBName>db_brasvalor</DBName>
+      <FKList />
+      <FKPKList />
+      <AIList />
+      <PKAIList />
+      <PKList />
+      <UNList />
+      <NonFKList />
+      <NonNullAble />
+      <NonPKList />
+    </Table>
+    <Table>
+      <Name>tb_coleta_gtv</Name>
+      <DBName>db_brasvalor</DBName>
+      <FKList />
+      <FKPKList />
+      <AIList />
+      <PKAIList />
+      <PKList />
+      <UNList />
+      <NonFKList />
+      <NonNullAble />
+      <NonPKList />
+    </Table>
+    <Table>
+      <Name>tb_custodia</Name>
+      <DBName>db_brasvalor</DBName>
+      <FKList />
+      <FKPKList />
+      <AIList />
+      <PKAIList />
+      <PKList />
+      <UNList />
+      <NonFKList />
+      <NonNullAble />
+      <NonPKList />
+    </Table>
+    <Table>
+      <Name>tb_fechamento_loja</Name>
+      <DBName>db_brasvalor</DBName>
+      <FKList />
+      <FKPKList />
+      <AIList />
+      <PKAIList />
+      <PKList />
+      <UNList />
+      <NonFKList />
+      <NonNullAble />
+      <NonPKList />
+    </Table>
+    <Table>
+      <Name>tb_funcionario_loja</Name>
+      <DBName>db_brasvalor</DBName>
+      <FKList />
+      <FKPKList />
+      <AIList />
+      <PKAIList />
+      <PKList />
+      <UNList />
+      <NonFKList />
+      <NonNullAble />
+      <NonPKList />
+    </Table>
+    <Table>
+      <Name>tb_gtv_custodia</Name>
+      <DBName>db_brasvalor</DBName>
+      <FKList />
+      <FKPKList />
+      <AIList />
+      <PKAIList />
+      <PKList />
+      <UNList />
+      <NonFKList />
+      <NonNullAble />
+      <NonPKList />
+    </Table>
+    <Table>
+      <Name>tb_malote</Name>
+      <DBName>db_brasvalor</DBName>
+      <FKList />
+      <FKPKList />
+      <AIList />
+      <PKAIList />
+      <PKList />
+      <UNList />
+      <NonFKList />
+      <NonNullAble />
+      <NonPKList />
+    </Table>
+    <Table>
+      <Name>tb_malote_alivio</Name>
+      <DBName>db_brasvalor</DBName>
+      <FKList />
+      <FKPKList />
+      <AIList />
+      <PKAIList />
+      <PKList />
+      <UNList />
+      <NonFKList />
+      <NonNullAble />
+      <NonPKList />
+    </Table>
+    <Table>
+      <Name>tb_pos</Name>
+      <DBName>db_brasvalor</DBName>
+      <FKList />
+      <FKPKList />
+      <AIList />
+      <PKAIList />
+      <PKList />
+      <UNList />
+      <NonFKList />
+      <NonNullAble />
+      <NonPKList />
+    </Table>
+    <Table>
+      <Name>tb_registro_fechamento</Name>
+      <DBName>db_brasvalor</DBName>
+      <FKList />
+      <FKPKList />
+      <AIList />
+      <PKAIList />
+      <PKList />
+      <UNList />
+      <NonFKList />
+      <NonNullAble />
+      <NonPKList />
+    </Table>
+    <Table>
+      <Name>tb_solicitacao_custodia</Name>
+      <DBName>db_brasvalor</DBName>
+      <FKList />
+      <FKPKList />
+      <AIList />
+      <PKAIList />
+      <PKList />
+      <UNList />
+      <NonFKList />
+      <NonNullAble />
+      <NonPKList />
+    </Table>
+    <Table>
+      <Name>tb_usuario_loja</Name>
+      <DBName>db_brasvalor</DBName>
+      <FKList />
+      <FKPKList />
+      <AIList />
+      <PKAIList />
+      <PKList />
+      <UNList />
+      <NonFKList />
+      <NonNullAble />
+      <NonPKList />
+    </Table>
+  </ToManyTables>
+</Table>
