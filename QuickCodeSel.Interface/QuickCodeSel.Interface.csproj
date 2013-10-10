@@ -53,11 +53,23 @@
     <Compile Include="Forms\ConnectionForm.Designer.cs">
       <DependentUpon>ConnectionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PopAddGlobalParameter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PopAddGlobalParameter.Designer.cs">
+      <DependentUpon>PopAddGlobalParameter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PopEditTables.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\PopEditTables.Designer.cs">
       <DependentUpon>PopEditTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PopSetUpConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PopSetUpConfiguration.Designer.cs">
+      <DependentUpon>PopSetUpConfiguration.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\TableSelectionForm.cs">
       <SubType>Form</SubType>
@@ -71,14 +83,21 @@
     <Compile Include="Forms\TemplateSelection.Designer.cs">
       <DependentUpon>TemplateSelection.cs</DependentUpon>
     </Compile>
+    <Compile Include="InterfaceEntities\Configuration.cs" />
     <Compile Include="InterfaceEntities\TableTemplate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\ConnectionForm.resx">
       <DependentUpon>ConnectionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PopAddGlobalParameter.resx">
+      <DependentUpon>PopAddGlobalParameter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\PopEditTables.resx">
       <DependentUpon>PopEditTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PopSetUpConfiguration.resx">
+      <DependentUpon>PopSetUpConfiguration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TableSelectionForm.resx">
       <DependentUpon>TableSelectionForm.cs</DependentUpon>

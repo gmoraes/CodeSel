@@ -42,7 +42,8 @@
             this.tableBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.btnProcessTemplate = new System.Windows.Forms.Button();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.btnAddGlobalParameter = new System.Windows.Forms.Button();
+            this.btConfiguration = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridTemplates)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableTemplateBindingSource)).BeginInit();
@@ -149,19 +150,33 @@
             this.btnProcessTemplate.UseVisualStyleBackColor = true;
             this.btnProcessTemplate.Click += new System.EventHandler(this.btnProcessTemplate_Click);
             // 
-            // progressBar
+            // btnAddGlobalParameter
             // 
-            this.progressBar.Location = new System.Drawing.Point(108, 292);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(350, 24);
-            this.progressBar.TabIndex = 6;
+            this.btnAddGlobalParameter.Location = new System.Drawing.Point(108, 292);
+            this.btnAddGlobalParameter.Name = "btnAddGlobalParameter";
+            this.btnAddGlobalParameter.Size = new System.Drawing.Size(89, 24);
+            this.btnAddGlobalParameter.TabIndex = 6;
+            this.btnAddGlobalParameter.Text = "Add Parameter";
+            this.btnAddGlobalParameter.UseVisualStyleBackColor = true;
+            this.btnAddGlobalParameter.Click += new System.EventHandler(this.btnAddGlobalParameter_Click);
+            // 
+            // btConfiguration
+            // 
+            this.btConfiguration.Location = new System.Drawing.Point(203, 292);
+            this.btConfiguration.Name = "btConfiguration";
+            this.btConfiguration.Size = new System.Drawing.Size(84, 24);
+            this.btConfiguration.TabIndex = 7;
+            this.btConfiguration.Text = "Configuration";
+            this.btConfiguration.UseVisualStyleBackColor = true;
+            this.btConfiguration.Click += new System.EventHandler(this.btConfiguration_Click);
             // 
             // TemplateSelection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(549, 320);
-            this.Controls.Add(this.progressBar);
+            this.Controls.Add(this.btConfiguration);
+            this.Controls.Add(this.btnAddGlobalParameter);
             this.Controls.Add(this.btnProcessTemplate);
             this.Controls.Add(this.dtGridTemplates);
             this.Controls.Add(this.btnAddTemplate);
@@ -194,6 +209,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn AppendOutput;
         private System.Windows.Forms.DataGridViewButtonColumn EditTables;
         private System.Windows.Forms.Button btnProcessTemplate;
-        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Button btnAddGlobalParameter;
+        private System.Windows.Forms.Button btConfiguration;
     }
 }

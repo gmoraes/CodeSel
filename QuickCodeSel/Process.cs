@@ -16,7 +16,8 @@ namespace QuickCodeSel.Debug
 {
     class Process
     {
-        public string FilePath { get { return Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + @"\Files"; } }
+        public string FilePath { get { return Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + @"\Debug"; } }
+        public string DebugEntity { get { return File.ReadAllText(Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + @"\DebugEntities\DebugEntity.xml"); } }
 
         public Process()
         {
@@ -27,23 +28,20 @@ namespace QuickCodeSel.Debug
             }
         }
 
-        public int ProcessTeste()
+        public int ProcessTeste(string[] args = null)
         {
-            ConfigurationSettings.AppSettings["TargetFilesUrl"] = @"C:\";
-            List<Entities.Table> Tables = Entities.Table.ListTables("db_brasvalor");
+            List<Entities.Table> Tables = new List<Entities.Table>();
+            Tables.Add(Entities.Table.XmlToTable(DebugEntity));
 
             foreach (Entities.Table Table in Tables)
             {
-                Table.ToOneTables = Entities.Table.ListOneToOneTables(Table.Name);
-                Table.ToManyTables = Entities.Table.ListOneToManyTables(Table.Name);
-                Table.Columns = Entities.Column.ListColumnsByTableNameAndDbKey(Table.Name, "db_brasvalor");
-
                 Dictionary<string, object> Parameters = new Dictionary<string, object>();
 
                 Parameters.Add("Table", Table);
-                Parameters.Add("Namespace", "Brasvalor");
+                Parameters.Add("Namespace", "DebugTester");
 
-                var host = (Host.QuickCodeSelHost)Host.TemplateProcessor.ProcessTemplate(@"C:\Users\Augusto\Desktop\AmbienteT4\Dados.tt", String.Format(@"C:\Users\Augusto\Desktop\AmbienteT4\Gerados\{0}", Table.CSName), Parameters);
+                var host = (Host.QuickCodeSelHost)Host.TemplateProcessor.ProcessTemplate(@"C:\Users\Augusto\Desktop\AmbienteT4\Dados.tt", 
+                    String.Format(@"C:\Users\Augusto\Desktop\AmbienteT4\Gerados\{0}", Table.CSName), Parameters);
             }
 
             return 1;

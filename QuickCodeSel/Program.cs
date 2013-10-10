@@ -11,7 +11,7 @@ namespace QuickCodeSel.Debug
         static void Main(string[] args)
         {
             Process process = new Process();
-            int i = process.ProcessTeste();
+            int i = process.ProcessTeste(args);
         }
     }
 }

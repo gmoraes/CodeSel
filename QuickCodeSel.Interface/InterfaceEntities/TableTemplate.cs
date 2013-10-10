@@ -8,6 +8,8 @@ namespace QuickCodeSel.Interface.InterfaceEntities
 {
     public class TableTemplate
     {
+        public static Dictionary<string, string> Parameters = new Dictionary<string, string>();
+
         public bool Selected { get; set; }
         public string TemplateName { get; set; }
         public string TemplatePath { get; set; }

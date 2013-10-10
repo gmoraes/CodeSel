@@ -72,9 +72,28 @@ namespace QuickCodeSel.Interface
         private void btnProcessTemplate_Click(object sender, EventArgs e)
         {
             var Tables = (List<InterfaceEntities.TableTemplate>)dtGridTemplates.DataSource;
-            foreach(InterfaceEntities.TableTemplate tableTemp in Tables)
+            if (Tables.FirstOrDefault(item => string.IsNullOrEmpty(item.TemplateOutput)) != null)
+            {
+                MessageBox.Show("All templates must have an output path specified!", "Error!");
+            }
+
+            if (Tables.FirstOrDefault(item => item.SelectedTables.Count == 0) != null)
+            {
+                MessageBox.Show("All templates must have at least one table selected!", "Error!");
+            }
         }
 
+        private void btnAddGlobalParameter_Click(object sender, EventArgs e)
+        {
+            PopAddGlobalParameter param = new PopAddGlobalParameter();
+            param.ShowDialog();
+        }
+
+        private void btConfiguration_Click(object sender, EventArgs e)
+        {
+            PopSetUpConfiguration config = new PopSetUpConfiguration();
+            config.ShowDialog();
+        }
     }
 
     static class Extensions

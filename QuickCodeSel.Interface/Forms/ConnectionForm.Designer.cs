@@ -64,9 +64,11 @@
             // lblCurrentAction
             // 
             this.lblCurrentAction.AutoSize = true;
+            this.lblCurrentAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentAction.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.lblCurrentAction.Location = new System.Drawing.Point(13, 66);
             this.lblCurrentAction.Name = "lblCurrentAction";
-            this.lblCurrentAction.Size = new System.Drawing.Size(38, 13);
+            this.lblCurrentAction.Size = new System.Drawing.Size(43, 13);
             this.lblCurrentAction.TabIndex = 4;
             this.lblCurrentAction.Text = "Ready";
             // 
