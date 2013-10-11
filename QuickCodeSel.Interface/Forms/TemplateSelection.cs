@@ -45,6 +45,7 @@ namespace QuickCodeSel.Interface
                 item.TemplateName = Path.GetFileName(template);
                 item.TemplatePath = template;
                 item.Tables = Tables.Select(table => (Entities.Table)table.Clone()).ToList();
+                item.Configuration = new Host.Configuration() { CreateDirectory = true, OnExistingOverwrite = true };
                 Collection.Add(item);
             }
             dtGridTemplates.DataSource = Collection;
@@ -68,7 +69,7 @@ namespace QuickCodeSel.Interface
                         break;
                     case "AppendOutput":
                         folderBrowserDialog.ShowDialog();
-                        dtGridTemplates.Rows[e.RowIndex].Cells["TemplateOutput"].Value = folderBrowserDialog.SelectedPath;
+                        dtGridTemplates.Rows[e.RowIndex].Cells["TemplateOutput"].Value = folderBrowserDialog.SelectedPath + @"\{Entity}";
                         break;
                 }
             }
@@ -91,7 +92,7 @@ namespace QuickCodeSel.Interface
                 string TemplateContent = File.ReadAllText(template.TemplatePath);
                 foreach (Entities.Table table in template.SelectedTables)
                 {
-                    Host.TemplateProcessor.ProcessTemplate(TemplateContent, template.TemplatePath,template.TemplateOutput, InterfaceEntities.TableTemplate.ParameterFullSet(table),template.Configuration);
+                    Host.TemplateProcessor.ProcessTemplate(TemplateContent, template.TemplateOutput.Replace("{Entity}", table.CSName), InterfaceEntities.TableTemplate.ParameterFullSet(table), template.Configuration);
                 }
             }
         }
