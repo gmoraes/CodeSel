@@ -54,7 +54,6 @@
             this.chkWarnOverwrite.TabIndex = 1;
             this.chkWarnOverwrite.Text = "Warn if it does?";
             this.chkWarnOverwrite.UseVisualStyleBackColor = true;
-            this.chkWarnOverwrite.CheckedChanged += new System.EventHandler(this.chkWarnOverwrite_CheckedChanged);
             // 
             // chkCreateDirectory
             // 
@@ -65,11 +64,10 @@
             this.chkCreateDirectory.TabIndex = 2;
             this.chkCreateDirectory.Text = "Create Directory if it does\'nt existis?";
             this.chkCreateDirectory.UseVisualStyleBackColor = true;
-            this.chkCreateDirectory.CheckedChanged += new System.EventHandler(this.chkCreateDirectory_CheckedChanged);
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(208, 32);
+            this.btnClose.Location = new System.Drawing.Point(111, 59);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(98, 23);
             this.btnClose.TabIndex = 3;
@@ -81,7 +79,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(320, 59);
+            this.ClientSize = new System.Drawing.Size(320, 94);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.chkCreateDirectory);
             this.Controls.Add(this.chkWarnOverwrite);
@@ -92,6 +90,7 @@
             this.Name = "PopSetUpConfiguration";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Global Configuration";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PopSetUpConfiguration_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

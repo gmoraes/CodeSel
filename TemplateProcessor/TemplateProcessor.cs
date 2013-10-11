@@ -9,20 +9,19 @@ namespace QuickCodeSel.TemplateProcessor
 {
     public static class TemplateProcessor
     {
-        public static ITextTemplatingEngineHost ProcessTemplate(string TemplatePath, string OutputPath, Dictionary<string, object> Parameter)
+        public static void ProcessTemplate
+            (string TemplateContent, string TemplatePath, string OutputPath, Dictionary<string, object> Parameter, Configuration Configuration)
         {
             QuickCodeSelHost host = new QuickCodeSelHost();
             host.Parameters = Parameter;
             Engine engine = new Engine();
+            host.GeneratedFilePathValue = OutputPath;
             host.TemplateFileValue = TemplatePath;
-            string input = File.ReadAllText(TemplatePath);
-            string output = engine.ProcessTemplate(input, host);
-            string outputFileName = Path.GetFileNameWithoutExtension(TemplatePath);
+            string output = engine.ProcessTemplate(TemplateContent, host);
             if (host.Errors == null)
             {
-                File.WriteAllText(OutputPath + "." + host.FileExtension, output, host.FileEncoding);
+                File.WriteAllText(host.GeneratedFilePathValue.ToString() + "." + host.FileExtension, output, host.FileEncoding);
             }
-            return host;
         }
     }
 }

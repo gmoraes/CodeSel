@@ -27,6 +27,9 @@ namespace QuickCodeSel.TemplateProcessor
                 return default(T);
             }
         }
+        
+        internal object GeneratedFilePathValue;
+        public object GeneratedFilePath { get { return GeneratedFilePathValue; } set { GeneratedFilePathValue = value; } }
 
         //the path and file name of the text template that is being processed
         //---------------------------------------------------------------------

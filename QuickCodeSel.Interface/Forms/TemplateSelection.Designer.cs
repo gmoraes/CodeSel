@@ -33,21 +33,23 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.btnAddTemplate = new System.Windows.Forms.Button();
             this.dtGridTemplates = new System.Windows.Forms.DataGridView();
-            this.TemplateName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TemplatePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TemplateOutput = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AppendOutput = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Config = new System.Windows.Forms.DataGridViewButtonColumn();
             this.EditTables = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.tableTemplateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.btnProcessTemplate = new System.Windows.Forms.Button();
             this.btnAddGlobalParameter = new System.Windows.Forms.Button();
             this.btConfiguration = new System.Windows.Forms.Button();
+            this.TemplateName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TemplatePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TemplateOutput = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableTemplateBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnGlobalOutput = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridTemplates)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tableTemplateBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableTemplateBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableBindingSource
@@ -81,6 +83,7 @@
             this.TemplatePath,
             this.TemplateOutput,
             this.AppendOutput,
+            this.Config,
             this.EditTables});
             this.dtGridTemplates.DataSource = this.tableTemplateBindingSource;
             this.dtGridTemplates.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
@@ -88,8 +91,69 @@
             this.dtGridTemplates.MultiSelect = false;
             this.dtGridTemplates.Name = "dtGridTemplates";
             this.dtGridTemplates.RowHeadersVisible = false;
-            this.dtGridTemplates.Size = new System.Drawing.Size(527, 276);
+            this.dtGridTemplates.Size = new System.Drawing.Size(607, 276);
             this.dtGridTemplates.TabIndex = 4;
+            // 
+            // AppendOutput
+            // 
+            this.AppendOutput.DataPropertyName = "AppendOutput";
+            this.AppendOutput.HeaderText = "";
+            this.AppendOutput.Name = "AppendOutput";
+            this.AppendOutput.Text = "...";
+            this.AppendOutput.UseColumnTextForButtonValue = true;
+            this.AppendOutput.Width = 20;
+            // 
+            // Config
+            // 
+            this.Config.DataPropertyName = "Config";
+            this.Config.HeaderText = "";
+            this.Config.Name = "Config";
+            this.Config.Text = "Config.";
+            this.Config.UseColumnTextForButtonValue = true;
+            this.Config.Width = 30;
+            // 
+            // EditTables
+            // 
+            this.EditTables.DataPropertyName = "EditTables";
+            this.EditTables.HeaderText = "";
+            this.EditTables.Name = "EditTables";
+            this.EditTables.Text = "Tables";
+            this.EditTables.UseColumnTextForButtonValue = true;
+            this.EditTables.Width = 40;
+            // 
+            // tableBindingSource1
+            // 
+            this.tableBindingSource1.DataSource = typeof(QuickCodeSel.Data.Entities.Table);
+            // 
+            // btnProcessTemplate
+            // 
+            this.btnProcessTemplate.Location = new System.Drawing.Point(544, 292);
+            this.btnProcessTemplate.Name = "btnProcessTemplate";
+            this.btnProcessTemplate.Size = new System.Drawing.Size(75, 23);
+            this.btnProcessTemplate.TabIndex = 5;
+            this.btnProcessTemplate.Text = "Start";
+            this.btnProcessTemplate.UseVisualStyleBackColor = true;
+            this.btnProcessTemplate.Click += new System.EventHandler(this.btnProcessTemplate_Click);
+            // 
+            // btnAddGlobalParameter
+            // 
+            this.btnAddGlobalParameter.Location = new System.Drawing.Point(108, 292);
+            this.btnAddGlobalParameter.Name = "btnAddGlobalParameter";
+            this.btnAddGlobalParameter.Size = new System.Drawing.Size(89, 24);
+            this.btnAddGlobalParameter.TabIndex = 6;
+            this.btnAddGlobalParameter.Text = "Add Parameter";
+            this.btnAddGlobalParameter.UseVisualStyleBackColor = true;
+            this.btnAddGlobalParameter.Click += new System.EventHandler(this.btnAddGlobalParameter_Click);
+            // 
+            // btConfiguration
+            // 
+            this.btConfiguration.Location = new System.Drawing.Point(549, 13);
+            this.btConfiguration.Name = "btConfiguration";
+            this.btConfiguration.Size = new System.Drawing.Size(27, 20);
+            this.btConfiguration.TabIndex = 7;
+            this.btConfiguration.Text = "Configuration";
+            this.btConfiguration.UseVisualStyleBackColor = true;
+            this.btConfiguration.Click += new System.EventHandler(this.btConfiguration_Click);
             // 
             // TemplateName
             // 
@@ -114,67 +178,26 @@
             this.TemplateOutput.HeaderText = "TemplateOutput";
             this.TemplateOutput.Name = "TemplateOutput";
             // 
-            // AppendOutput
-            // 
-            this.AppendOutput.DataPropertyName = "AppendOutput";
-            this.AppendOutput.HeaderText = "";
-            this.AppendOutput.Name = "AppendOutput";
-            this.AppendOutput.Text = "...";
-            this.AppendOutput.UseColumnTextForButtonValue = true;
-            this.AppendOutput.Width = 20;
-            // 
-            // EditTables
-            // 
-            this.EditTables.DataPropertyName = "EditTables";
-            this.EditTables.HeaderText = "";
-            this.EditTables.Name = "EditTables";
-            this.EditTables.Text = "Edit";
-            this.EditTables.UseColumnTextForButtonValue = true;
-            this.EditTables.Width = 30;
-            // 
             // tableTemplateBindingSource
             // 
             this.tableTemplateBindingSource.DataSource = typeof(QuickCodeSel.Interface.InterfaceEntities.TableTemplate);
             // 
-            // tableBindingSource1
+            // btnGlobalOutput
             // 
-            this.tableBindingSource1.DataSource = typeof(QuickCodeSel.Data.Entities.Table);
-            // 
-            // btnProcessTemplate
-            // 
-            this.btnProcessTemplate.Location = new System.Drawing.Point(464, 292);
-            this.btnProcessTemplate.Name = "btnProcessTemplate";
-            this.btnProcessTemplate.Size = new System.Drawing.Size(75, 23);
-            this.btnProcessTemplate.TabIndex = 5;
-            this.btnProcessTemplate.Text = "Start";
-            this.btnProcessTemplate.UseVisualStyleBackColor = true;
-            this.btnProcessTemplate.Click += new System.EventHandler(this.btnProcessTemplate_Click);
-            // 
-            // btnAddGlobalParameter
-            // 
-            this.btnAddGlobalParameter.Location = new System.Drawing.Point(108, 292);
-            this.btnAddGlobalParameter.Name = "btnAddGlobalParameter";
-            this.btnAddGlobalParameter.Size = new System.Drawing.Size(89, 24);
-            this.btnAddGlobalParameter.TabIndex = 6;
-            this.btnAddGlobalParameter.Text = "Add Parameter";
-            this.btnAddGlobalParameter.UseVisualStyleBackColor = true;
-            this.btnAddGlobalParameter.Click += new System.EventHandler(this.btnAddGlobalParameter_Click);
-            // 
-            // btConfiguration
-            // 
-            this.btConfiguration.Location = new System.Drawing.Point(203, 292);
-            this.btConfiguration.Name = "btConfiguration";
-            this.btConfiguration.Size = new System.Drawing.Size(84, 24);
-            this.btConfiguration.TabIndex = 7;
-            this.btConfiguration.Text = "Configuration";
-            this.btConfiguration.UseVisualStyleBackColor = true;
-            this.btConfiguration.Click += new System.EventHandler(this.btConfiguration_Click);
+            this.btnGlobalOutput.Location = new System.Drawing.Point(526, 13);
+            this.btnGlobalOutput.Name = "btnGlobalOutput";
+            this.btnGlobalOutput.Size = new System.Drawing.Size(21, 20);
+            this.btnGlobalOutput.TabIndex = 8;
+            this.btnGlobalOutput.Text = "...";
+            this.btnGlobalOutput.UseVisualStyleBackColor = true;
+            this.btnGlobalOutput.Click += new System.EventHandler(this.btnGlobalOutput_Click);
             // 
             // TemplateSelection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 320);
+            this.ClientSize = new System.Drawing.Size(631, 320);
+            this.Controls.Add(this.btnGlobalOutput);
             this.Controls.Add(this.btConfiguration);
             this.Controls.Add(this.btnAddGlobalParameter);
             this.Controls.Add(this.btnProcessTemplate);
@@ -188,8 +211,8 @@
             this.Text = "Template Selection";
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridTemplates)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tableTemplateBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableTemplateBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -203,13 +226,15 @@
         private System.Windows.Forms.BindingSource tableBindingSource1;
         private System.Windows.Forms.BindingSource tableTemplateBindingSource;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.Windows.Forms.Button btnProcessTemplate;
+        private System.Windows.Forms.Button btnAddGlobalParameter;
+        private System.Windows.Forms.Button btConfiguration;
         private System.Windows.Forms.DataGridViewTextBoxColumn TemplateName;
         private System.Windows.Forms.DataGridViewTextBoxColumn TemplatePath;
         private System.Windows.Forms.DataGridViewTextBoxColumn TemplateOutput;
         private System.Windows.Forms.DataGridViewButtonColumn AppendOutput;
+        private System.Windows.Forms.DataGridViewButtonColumn Config;
         private System.Windows.Forms.DataGridViewButtonColumn EditTables;
-        private System.Windows.Forms.Button btnProcessTemplate;
-        private System.Windows.Forms.Button btnAddGlobalParameter;
-        private System.Windows.Forms.Button btConfiguration;
+        private System.Windows.Forms.Button btnGlobalOutput;
     }
 }

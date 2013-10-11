@@ -218,16 +218,16 @@ namespace QuickCodeSel.Data.Entities
             return DB.ListTables(Database);
         }
 
-        public static List<Table> ListOneToOneTables(string TableName)
+        public static List<Table> ListOneToOneTables(string TableName, string Database)
         {
             DB.Table DB = new DB.Table();
-            return DB.ListOneToOneTables(TableName);
+            return DB.ListOneToOneTables(TableName, Database);
         }
 
-        public static List<Table> ListOneToManyTables(string TableName)
+        public static List<Table> ListOneToManyTables(string TableName, string Database)
         {
             DB.Table DB = new DB.Table();
-            return DB.ListOneToManyTables(TableName);
+            return DB.ListOneToManyTables(TableName, Database);
         }
 
         public string ToXml()

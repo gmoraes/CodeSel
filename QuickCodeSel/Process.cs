@@ -40,8 +40,8 @@ namespace QuickCodeSel.Debug
                 Parameters.Add("Table", Table);
                 Parameters.Add("Namespace", "DebugTester");
 
-                var host = (Host.QuickCodeSelHost)Host.TemplateProcessor.ProcessTemplate(@"C:\Users\Augusto\Desktop\AmbienteT4\Dados.tt", 
-                    String.Format(@"C:\Users\Augusto\Desktop\AmbienteT4\Gerados\{0}", Table.CSName), Parameters);
+                //var host = (Host.QuickCodeSelHost)Host.TemplateProcessor.ProcessTemplate(@"C:\Users\Augusto\Desktop\AmbienteT4\Dados.tt", 
+                //    String.Format(@"C:\Users\Augusto\Desktop\AmbienteT4\Gerados\{0}", Table.CSName), Parameters);
             }
 
             return 1;

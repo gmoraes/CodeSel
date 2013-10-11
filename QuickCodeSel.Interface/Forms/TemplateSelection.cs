@@ -8,6 +8,7 @@ using System.Text;
 using System.IO;
 using System.Windows.Forms;
 using Entities = QuickCodeSel.Data.Entities;
+using Host = QuickCodeSel.TemplateProcessor;
 
 namespace QuickCodeSel.Interface
 {
@@ -54,12 +55,16 @@ namespace QuickCodeSel.Interface
         {
             if (e.RowIndex >= 0 && ((DataGridView)sender).Columns[e.ColumnIndex].GetType() == typeof(DataGridViewButtonColumn))
             {
-                var cell = ((DataGridView)sender).Columns[e.ColumnIndex].DataPropertyName;
-                switch (cell)
+                var cell = ((DataGridView)sender).Columns[e.ColumnIndex];
+                switch (cell.DataPropertyName)
                 {
                     case "EditTables":
                         PopEditTables pop = new PopEditTables(((InterfaceEntities.TableTemplate)dtGridTemplates.Rows[e.RowIndex].DataBoundItem).Tables);
                         pop.ShowDialog();
+                        break;
+                    case "Config":
+                        PopSetUpConfiguration config = new PopSetUpConfiguration((InterfaceEntities.TableTemplate)dtGridTemplates.Rows[e.RowIndex].DataBoundItem);
+                        config.ShowDialog();
                         break;
                     case "AppendOutput":
                         folderBrowserDialog.ShowDialog();
@@ -81,6 +86,14 @@ namespace QuickCodeSel.Interface
             {
                 MessageBox.Show("All templates must have at least one table selected!", "Error!");
             }
+            foreach (InterfaceEntities.TableTemplate template in (List<InterfaceEntities.TableTemplate>)dtGridTemplates.DataSource)
+            {
+                string TemplateContent = File.ReadAllText(template.TemplatePath);
+                foreach (Entities.Table table in template.SelectedTables)
+                {
+                    Host.TemplateProcessor.ProcessTemplate(TemplateContent, template.TemplatePath,template.TemplateOutput, InterfaceEntities.TableTemplate.ParameterFullSet(table),template.Configuration);
+                }
+            }
         }
 
         private void btnAddGlobalParameter_Click(object sender, EventArgs e)
@@ -91,8 +104,17 @@ namespace QuickCodeSel.Interface
 
         private void btConfiguration_Click(object sender, EventArgs e)
         {
-            PopSetUpConfiguration config = new PopSetUpConfiguration();
+            PopSetUpConfiguration config = new PopSetUpConfiguration((List<InterfaceEntities.TableTemplate>)dtGridTemplates.DataSource);
             config.ShowDialog();
+        }
+
+        private void btnGlobalOutput_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog.ShowDialog();
+            foreach (DataGridViewRow row in dtGridTemplates.Rows)
+            {
+                row.Cells["TemplateOutput"].Value = folderBrowserDialog.SelectedPath;
+            }
         }
     }
 

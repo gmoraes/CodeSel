@@ -71,6 +71,8 @@ namespace QuickCodeSel.Interface
                     lblCurrentAction.Text = "Preparing " + Table.Name + " for template generation...";
                     Table.Columns = Entities.Column.ListColumnsByTableNameAndDbKey(Table.Name, cmbTables.SelectedValue.ToString());
                 }
+                Table.ToOneTables = Entities.Table.ListOneToOneTables(Table.Name, cmbTables.SelectedValue.ToString());
+                Table.ToManyTables = Entities.Table.ListOneToManyTables(Table.Name, cmbTables.SelectedValue.ToString());
                 progressBar.PerformStep();
             }
 

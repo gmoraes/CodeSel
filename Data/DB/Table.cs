@@ -43,7 +43,7 @@ namespace QuickCodeSel.Data.DB
             return Collection;
         }
 
-        public List<Entities.Table> ListOneToOneTables(string TableName)
+        public List<Entities.Table> ListOneToOneTables(string TableName, string Database)
         {
             List<Entities.Table> Collection = new List<Entities.Table>();
 
@@ -56,7 +56,7 @@ namespace QuickCodeSel.Data.DB
 
             MySqlCommand Command = GetSqlStringCommand(SQL.ToString());
 
-            AddInParameter(Command, "db_name", base.Connection.Database.ToString());
+            AddInParameter(Command, "db_name", Database);
             AddInParameter(Command, "tb_name", TableName);
 
             using (MySqlDataReader DataReader = ExecuteReader(Command))
@@ -70,7 +70,7 @@ namespace QuickCodeSel.Data.DB
             return Collection;
         }
 
-        public List<Entities.Table> ListOneToManyTables(string TableName)
+        public List<Entities.Table> ListOneToManyTables(string TableName, string Database)
         {
             List<Entities.Table> Collection = new List<Entities.Table>();
 
@@ -82,7 +82,7 @@ namespace QuickCodeSel.Data.DB
 
             MySqlCommand Command = GetSqlStringCommand(SQL.ToString());
 
-            AddInParameter(Command, "db_name", base.Connection.Database.ToString());
+            AddInParameter(Command, "db_name", Database);
             AddInParameter(Command, "tb_name", TableName);
 
             using (MySqlDataReader DataReader = ExecuteReader(Command))
