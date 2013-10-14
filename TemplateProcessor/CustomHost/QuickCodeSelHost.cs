@@ -315,6 +315,7 @@ namespace QuickCodeSel.TemplateProcessor
         }
         public void UnloadAppDomain()
         {
+            if (AppDomain == null) return;
             AppDomain.Unload(AppDomain);
         }
     }
