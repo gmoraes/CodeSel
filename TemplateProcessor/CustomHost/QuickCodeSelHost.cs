@@ -296,12 +296,14 @@ namespace QuickCodeSel.TemplateProcessor
         //This is the application domain that is used to compile and run
         //the generated transformation class to create the generated text output.
         //----------------------------------------------------------------------
+        private AppDomain AppDomain;
         public AppDomain ProvideTemplatingAppDomain(string content)
         {
             //This host will provide a new application domain each time the 
             //engine processes a text template.
             //-------------------------------------------------------------
-            return AppDomain.CreateDomain("Generation App Domain");
+            AppDomain = AppDomain.CreateDomain("Generation App Domain");
+            return AppDomain;
             //This could be changed to return the current appdomain, but new 
             //assemblies are loaded into this AppDomain on a regular basis.
             //If the AppDomain lasts too long, it will grow indefintely, 
@@ -310,6 +312,10 @@ namespace QuickCodeSel.TemplateProcessor
             //a certain number of text template generations (for example, 10).
             //This could be customized based on the contents of the text 
             //template, which are provided as a parameter for that purpose.
+        }
+        public void UnloadAppDomain()
+        {
+            AppDomain.Unload(AppDomain);
         }
     }
     //This will accept the path of a text template as an argument.

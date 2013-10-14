@@ -60,7 +60,7 @@ namespace QuickCodeSel.TemplateProcessor
             }
             finally
             {
-                host = null;
+                host.UnloadAppDomain();
                 engine = null;
                 GC.Collect();
             }
