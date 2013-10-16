@@ -1,0 +1,21 @@
+﻿<#@ template language="C#" debug="true" HostSpecific="true" #>
+<#@ output extension="cs" #>
+<#@ import namespace="Entities = QuickCodeSel.Data.Entities"#>
+<#@ import namespace="Util = QuickCodeSel.Util"#>
+<#@ import namespace="Host = QuickCodeSel.TemplateProcessor"#>
+<#@ import namespace="System.Collections.Generic" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Data.Common;
+using System.Text;
+
+<#
+	Host.QuickCodeSelHost quickCodeSelHost = (Host.QuickCodeSelHost)Host;
+	Entities.Table table = quickCodeSelHost.GetParameter<Entities.Table>("Table");
+    string Namesapce = quickCodeSelHost.GetParameter<string>("Namespace");
+#>
+
+O OBJECT é IGUAL ANULL? <#=(this.Host == null).ToString()#>
+O OBJECT é IGUAL ANULL? <#=((object)this.Host).GetType()#>
+TABLE: <#=table.ToXml()#>
