@@ -89,8 +89,10 @@ namespace QuickCodeSel.TemplateProcessor
                     //fully qualified path and name of the System assembly.
                     //---------------------------------------------------------
                     typeof(System.Uri).Assembly.Location,
-                    Path.Combine(Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]), "mono.texttemplating.dll")
-                    //@"C:\Users\Augusto\Documents\Visual Studio 2010\Projects\QuickCodeSel\Componentes\mono.texttemplating.dll"
+                    Path.Combine(Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]), "mono.texttemplating.dll"),
+                    Path.Combine(Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]), "Data.dll"),
+                    Path.Combine(Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]), "Util.dll"),
+                    Path.Combine(Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]), "TemplateProcessor.dll")
                 };
             }
         }

@@ -10,25 +10,29 @@ namespace QuickCodeSel.TemplateProcessor
     public class TemplateProcessor : IDisposable
     {
         string TemplateContent { get; set; }
+        string TemplatePath { get; set; }
         string OutputPath { get; set; }
         Dictionary<string, object> Parameter { get; set; }
         Configuration Configuration { get; set; }
 
-        public TemplateProcessor(string TemplateContent, string OutputPath, Dictionary<string, object> Parameter, Configuration Configuration)
+        public TemplateProcessor(string TemplateContent, string TemplatePath, string OutputPath, Dictionary<string, object> Parameter, Configuration Configuration)
         {
             this.TemplateContent = TemplateContent;
             this.OutputPath = OutputPath;
             this.Parameter = Parameter;
             this.Configuration = Configuration;
+            this.TemplatePath = TemplatePath;
         }
 
-        public void ProcessTemplate()
+        public string ProcessTemplate(string EntityName = "")
         {
+            StringBuilder Builder = new StringBuilder();
             QuickCodeSelHost host = new QuickCodeSelHost();
             host.Parameters = Parameter;
             Engine engine = new Engine();
             try
             {
+                host.TemplateFileValue = TemplatePath;
                 string output = engine.ProcessTemplate(TemplateContent, host);
                 string generatedFilePath = OutputPath + "." + host.FileExtension;
 
@@ -47,16 +51,30 @@ namespace QuickCodeSel.TemplateProcessor
                         {
                             if (!Configuration.OnExistingOverwrite)
                             {
-                                throw new Exception("The file " + generatedFilePath + " exists and QuickCodeSel is not configured to overwrite!");
+                                throw new Exception("The file " + generatedFilePath + " processed by " + Path.GetFileName(TemplatePath) + " exists and QuickCodeSel is not configured to overwrite! File will be not generated for the " + EntityName + " entity.");
+                            }
+                            else
+                            {
+                                if (Configuration.WarnOnExisting) Builder.AppendLine("[WARN] " + EntityName + " processed by " + Path.GetFileName(TemplatePath) + " already existed and was replaced.");
                             }
                         }
                     }
                     File.WriteAllText(generatedFilePath, output, host.FileEncoding);
+                    Builder.AppendLine("[OK]File generated for " + EntityName + ". Processed by " + Path.GetFileName(TemplatePath) + ".");
                 }
+                else
+                {
+                    foreach (var error in host.Errors)
+                    {
+                        Builder.AppendLine(error.ToString());
+                    }
+                }
+                return Builder.ToString();
             }
             catch (Exception ex)
             {
                 //Do something.
+                return ex.Message;
             }
             finally
             {

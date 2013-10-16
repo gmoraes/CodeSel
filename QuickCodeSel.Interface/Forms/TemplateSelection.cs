@@ -87,17 +87,9 @@ namespace QuickCodeSel.Interface
             {
                 MessageBox.Show("All templates must have at least one table selected!", "Error!");
             }
-            foreach (InterfaceEntities.TableTemplate template in (List<InterfaceEntities.TableTemplate>)dtGridTemplates.DataSource)
-            {
-                string TemplateContent = File.ReadAllText(template.TemplatePath);
-                foreach (Entities.Table table in template.SelectedTables)
-                {
-                    using (var Processor = new TemplateProcessor.TemplateProcessor(TemplateContent, template.TemplateOutput.Replace("{Entity}", table.CSName), InterfaceEntities.TableTemplate.ParameterFullSet(table), template.Configuration)) 
-                    {
-                        Processor.ProcessTemplate();
-                    }
-                }
-            }
+
+            PopProcessTemplate process = new PopProcessTemplate(Tables);
+            process.ShowDialog();
         }
 
         private void btnAddGlobalParameter_Click(object sender, EventArgs e)
