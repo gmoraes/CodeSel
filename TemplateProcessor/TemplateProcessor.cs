@@ -44,23 +44,29 @@ namespace QuickCodeSel.TemplateProcessor
                         {
                             Directory.CreateDirectory(Path.GetDirectoryName(generatedFilePath));
                         }
-                    }
-                    else
-                    {
-                        if (File.Exists(generatedFilePath))
+                        else 
                         {
-                            if (!Configuration.OnExistingOverwrite)
-                            {
-                                throw new Exception("The file " + generatedFilePath + " processed by " + Path.GetFileName(TemplatePath) + " exists and QuickCodeSel is not configured to overwrite! File will be not generated for the " + EntityName + " entity.");
-                            }
-                            else
-                            {
-                                if (Configuration.WarnOnExisting) Builder.AppendLine("[WARN] " + EntityName + " processed by " + Path.GetFileName(TemplatePath) + " already existed and was replaced.");
-                            }
+                            throw new Exception("The directory " + Path.GetDirectoryName(generatedFilePath) + " does not exist and QuickCodeSel is not configured to create a directory!");
                         }
                     }
+
+                    if (File.Exists(generatedFilePath))
+                    {
+                        if (!Configuration.OnExistingOverwrite)
+                        {
+                            throw new Exception("The file " + generatedFilePath + " processed by " + Path.GetFileName(TemplatePath) + " exists and QuickCodeSel is not configured to overwrite! File will be not generated for the " + EntityName + " entity.");
+                        }
+                        else
+                        {
+                            if (Configuration.WarnOnExisting) Builder.AppendLine("[WARN] " + EntityName + " processed by " + Path.GetFileName(TemplatePath) + " already existed and was replaced.");
+                            else Builder.AppendLine("[OK]File generated for " + EntityName + ". Processed by " + Path.GetFileName(TemplatePath) + ".");
+                        }
+                    }
+                    else 
+                    {
+                        Builder.AppendLine("[OK]File generated for " + EntityName + ". Processed by " + Path.GetFileName(TemplatePath) + ".");
+                    }
                     File.WriteAllText(generatedFilePath, output, host.FileEncoding);
-                    Builder.AppendLine("[OK]File generated for " + EntityName + ". Processed by " + Path.GetFileName(TemplatePath) + ".");
                 }
                 else
                 {

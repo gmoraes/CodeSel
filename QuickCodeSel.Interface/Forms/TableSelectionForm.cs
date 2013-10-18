@@ -61,7 +61,7 @@ namespace QuickCodeSel.Interface
         private void btnChooseTemplates_Click(object sender, EventArgs e)
         {
             btnChooseTemplates.Enabled = false;
-            btnChooseTemplates.Text = "Processing...";
+            btnChooseTemplates.Text = "    Processing...";
             var Tables = (List<Entities.Table>)dtGridTable.DataSource;
             progressBar.Maximum = Tables.Count * 100;
             foreach (Entities.Table Table in Tables)

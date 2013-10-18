@@ -28,50 +28,87 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PopProcessTemplate));
             this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.btnProcess = new System.Windows.Forms.Button();
             this.richTxtBoxLog = new System.Windows.Forms.RichTextBox();
+            this.grpBoxStatus = new System.Windows.Forms.GroupBox();
+            this.grpLog = new System.Windows.Forms.GroupBox();
+            this.btnProcess = new System.Windows.Forms.Button();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.grpBoxStatus.SuspendLayout();
+            this.grpLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(13, 13);
+            this.progressBar.Location = new System.Drawing.Point(6, 19);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(705, 57);
+            this.progressBar.Size = new System.Drawing.Size(451, 57);
             this.progressBar.TabIndex = 0;
-            // 
-            // btnProcess
-            // 
-            this.btnProcess.Location = new System.Drawing.Point(643, 290);
-            this.btnProcess.Name = "btnProcess";
-            this.btnProcess.Size = new System.Drawing.Size(75, 23);
-            this.btnProcess.TabIndex = 1;
-            this.btnProcess.Text = "Process";
-            this.btnProcess.UseVisualStyleBackColor = true;
-            this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
             // 
             // richTxtBoxLog
             // 
-            this.richTxtBoxLog.Location = new System.Drawing.Point(13, 77);
+            this.richTxtBoxLog.Location = new System.Drawing.Point(6, 19);
             this.richTxtBoxLog.Name = "richTxtBoxLog";
-            this.richTxtBoxLog.Size = new System.Drawing.Size(705, 207);
+            this.richTxtBoxLog.Size = new System.Drawing.Size(451, 115);
             this.richTxtBoxLog.TabIndex = 2;
             this.richTxtBoxLog.Text = "";
+            // 
+            // grpBoxStatus
+            // 
+            this.grpBoxStatus.Controls.Add(this.progressBar);
+            this.grpBoxStatus.Location = new System.Drawing.Point(12, 12);
+            this.grpBoxStatus.Name = "grpBoxStatus";
+            this.grpBoxStatus.Size = new System.Drawing.Size(463, 90);
+            this.grpBoxStatus.TabIndex = 3;
+            this.grpBoxStatus.TabStop = false;
+            this.grpBoxStatus.Text = "Progress Status";
+            // 
+            // grpLog
+            // 
+            this.grpLog.Controls.Add(this.richTxtBoxLog);
+            this.grpLog.Location = new System.Drawing.Point(12, 93);
+            this.grpLog.Name = "grpLog";
+            this.grpLog.Size = new System.Drawing.Size(463, 140);
+            this.grpLog.TabIndex = 4;
+            this.grpLog.TabStop = false;
+            this.grpLog.Text = "Log";
+            // 
+            // btnProcess
+            // 
+            this.btnProcess.Image = global::QuickCodeSel.Interface.Properties.Resources._1382120804_process;
+            this.btnProcess.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProcess.Location = new System.Drawing.Point(408, 239);
+            this.btnProcess.Name = "btnProcess";
+            this.btnProcess.Size = new System.Drawing.Size(67, 23);
+            this.btnProcess.TabIndex = 1;
+            this.btnProcess.Text = "    Start";
+            this.btnProcess.UseVisualStyleBackColor = true;
+            this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
+            // 
+            // timer
+            // 
+            this.timer.Interval = 250;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // PopProcessTemplate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(730, 325);
-            this.Controls.Add(this.richTxtBoxLog);
+            this.ClientSize = new System.Drawing.Size(487, 270);
+            this.Controls.Add(this.grpLog);
+            this.Controls.Add(this.grpBoxStatus);
             this.Controls.Add(this.btnProcess);
-            this.Controls.Add(this.progressBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PopProcessTemplate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Processing Form";
+            this.grpBoxStatus.ResumeLayout(false);
+            this.grpLog.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -81,5 +118,8 @@
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Button btnProcess;
         private System.Windows.Forms.RichTextBox richTxtBoxLog;
+        private System.Windows.Forms.GroupBox grpBoxStatus;
+        private System.Windows.Forms.GroupBox grpLog;
+        private System.Windows.Forms.Timer timer;
     }
 }

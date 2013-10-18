@@ -29,27 +29,32 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableSelectionForm));
             this.cmbTables = new System.Windows.Forms.ComboBox();
             this.lblSelectTables = new System.Windows.Forms.Label();
             this.dtGridColumn = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DbType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtGridTable = new System.Windows.Forms.DataGridView();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.lblCurrentAction = new System.Windows.Forms.Label();
+            this.grpBoxTables = new System.Windows.Forms.GroupBox();
+            this.grpBoxColumns = new System.Windows.Forms.GroupBox();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isPKDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isFKDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isAIDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isUNDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isNullAbleDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.columnBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dtGridTable = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.lblCurrentAction = new System.Windows.Forms.Label();
             this.btnChooseTemplates = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridColumn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.columnBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridTable)).BeginInit();
+            this.grpBoxTables.SuspendLayout();
+            this.grpBoxColumns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.columnBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbTables
@@ -86,12 +91,84 @@
             this.isUNDataGridViewCheckBoxColumn,
             this.isNullAbleDataGridViewCheckBoxColumn});
             this.dtGridColumn.DataSource = this.columnBindingSource;
-            this.dtGridColumn.Location = new System.Drawing.Point(261, 36);
+            this.dtGridColumn.Location = new System.Drawing.Point(6, 19);
             this.dtGridColumn.MultiSelect = false;
             this.dtGridColumn.Name = "dtGridColumn";
             this.dtGridColumn.RowHeadersVisible = false;
             this.dtGridColumn.Size = new System.Drawing.Size(394, 279);
             this.dtGridColumn.TabIndex = 2;
+            // 
+            // DbType
+            // 
+            this.DbType.DataPropertyName = "DbType";
+            this.DbType.HeaderText = "DbType";
+            this.DbType.Name = "DbType";
+            // 
+            // dtGridTable
+            // 
+            this.dtGridTable.AllowUserToAddRows = false;
+            this.dtGridTable.AllowUserToDeleteRows = false;
+            this.dtGridTable.AllowUserToOrderColumns = true;
+            this.dtGridTable.AutoGenerateColumns = false;
+            this.dtGridTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtGridTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameDataGridViewTextBoxColumn});
+            this.dtGridTable.DataSource = this.tableBindingSource;
+            this.dtGridTable.Location = new System.Drawing.Point(6, 19);
+            this.dtGridTable.MultiSelect = false;
+            this.dtGridTable.Name = "dtGridTable";
+            this.dtGridTable.RowHeadersVisible = false;
+            this.dtGridTable.Size = new System.Drawing.Size(243, 279);
+            this.dtGridTable.TabIndex = 3;
+            this.dtGridTable.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGridTable_RowEnter);
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(12, 351);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(563, 29);
+            this.progressBar.TabIndex = 4;
+            // 
+            // lblCurrentAction
+            // 
+            this.lblCurrentAction.AutoSize = true;
+            this.lblCurrentAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentAction.Location = new System.Drawing.Point(288, 12);
+            this.lblCurrentAction.Name = "lblCurrentAction";
+            this.lblCurrentAction.Size = new System.Drawing.Size(0, 13);
+            this.lblCurrentAction.TabIndex = 5;
+            // 
+            // grpBoxTables
+            // 
+            this.grpBoxTables.Controls.Add(this.dtGridTable);
+            this.grpBoxTables.Location = new System.Drawing.Point(12, 36);
+            this.grpBoxTables.Name = "grpBoxTables";
+            this.grpBoxTables.Size = new System.Drawing.Size(257, 309);
+            this.grpBoxTables.TabIndex = 7;
+            this.grpBoxTables.TabStop = false;
+            this.grpBoxTables.Text = "Tables";
+            // 
+            // grpBoxColumns
+            // 
+            this.grpBoxColumns.Controls.Add(this.dtGridColumn);
+            this.grpBoxColumns.Location = new System.Drawing.Point(275, 36);
+            this.grpBoxColumns.Name = "grpBoxColumns";
+            this.grpBoxColumns.Size = new System.Drawing.Size(410, 309);
+            this.grpBoxColumns.TabIndex = 4;
+            this.grpBoxColumns.TabStop = false;
+            this.grpBoxColumns.Text = "Columns";
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 40;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // tableBindingSource
+            // 
+            this.tableBindingSource.DataSource = typeof(QuickCodeSel.Data.Entities.Table);
             // 
             // nameDataGridViewTextBoxColumn1
             // 
@@ -99,12 +176,6 @@
             this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
-            // 
-            // DbType
-            // 
-            this.DbType.DataPropertyName = "DbType";
-            this.DbType.HeaderText = "DbType";
-            this.DbType.Name = "DbType";
             // 
             // isPKDataGridViewCheckBoxColumn
             // 
@@ -145,59 +216,16 @@
             // 
             this.columnBindingSource.DataSource = typeof(QuickCodeSel.Data.Entities.Column);
             // 
-            // dtGridTable
-            // 
-            this.dtGridTable.AllowUserToAddRows = false;
-            this.dtGridTable.AllowUserToDeleteRows = false;
-            this.dtGridTable.AllowUserToOrderColumns = true;
-            this.dtGridTable.AutoGenerateColumns = false;
-            this.dtGridTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtGridTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn});
-            this.dtGridTable.DataSource = this.tableBindingSource;
-            this.dtGridTable.Location = new System.Drawing.Point(12, 36);
-            this.dtGridTable.MultiSelect = false;
-            this.dtGridTable.Name = "dtGridTable";
-            this.dtGridTable.RowHeadersVisible = false;
-            this.dtGridTable.Size = new System.Drawing.Size(243, 279);
-            this.dtGridTable.TabIndex = 3;
-            this.dtGridTable.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGridTable_RowEnter);
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 40;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // tableBindingSource
-            // 
-            this.tableBindingSource.DataSource = typeof(QuickCodeSel.Data.Entities.Table);
-            // 
-            // progressBar
-            // 
-            this.progressBar.Location = new System.Drawing.Point(12, 318);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(524, 23);
-            this.progressBar.TabIndex = 4;
-            // 
-            // lblCurrentAction
-            // 
-            this.lblCurrentAction.AutoSize = true;
-            this.lblCurrentAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentAction.Location = new System.Drawing.Point(301, 12);
-            this.lblCurrentAction.Name = "lblCurrentAction";
-            this.lblCurrentAction.Size = new System.Drawing.Size(0, 13);
-            this.lblCurrentAction.TabIndex = 5;
-            // 
             // btnChooseTemplates
             // 
-            this.btnChooseTemplates.Location = new System.Drawing.Point(542, 318);
+            this.btnChooseTemplates.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnChooseTemplates.Image = global::QuickCodeSel.Interface.Properties.Resources._1382119585_newspaper_go1;
+            this.btnChooseTemplates.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChooseTemplates.Location = new System.Drawing.Point(581, 351);
             this.btnChooseTemplates.Name = "btnChooseTemplates";
-            this.btnChooseTemplates.Size = new System.Drawing.Size(113, 23);
+            this.btnChooseTemplates.Size = new System.Drawing.Size(104, 29);
             this.btnChooseTemplates.TabIndex = 6;
-            this.btnChooseTemplates.Text = "Choose Templates";
+            this.btnChooseTemplates.Text = "Next";
             this.btnChooseTemplates.UseVisualStyleBackColor = true;
             this.btnChooseTemplates.Click += new System.EventHandler(this.btnChooseTemplates_Click);
             // 
@@ -205,24 +233,27 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(663, 345);
+            this.ClientSize = new System.Drawing.Size(695, 387);
+            this.Controls.Add(this.grpBoxTables);
+            this.Controls.Add(this.grpBoxColumns);
             this.Controls.Add(this.btnChooseTemplates);
             this.Controls.Add(this.lblCurrentAction);
             this.Controls.Add(this.progressBar);
-            this.Controls.Add(this.dtGridTable);
-            this.Controls.Add(this.dtGridColumn);
             this.Controls.Add(this.lblSelectTables);
             this.Controls.Add(this.cmbTables);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TableSelectionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Database Selection";
             ((System.ComponentModel.ISupportInitialize)(this.dtGridColumn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.columnBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridTable)).EndInit();
+            this.grpBoxTables.ResumeLayout(false);
+            this.grpBoxColumns.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.columnBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,5 +278,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn isUNDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isNullAbleDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.GroupBox grpBoxTables;
+        private System.Windows.Forms.GroupBox grpBoxColumns;
     }
 }

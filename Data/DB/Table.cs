@@ -90,16 +90,9 @@ namespace QuickCodeSel.Data.DB
                 while (DataReader.Read())
                 {
                     Collection.Add(this.FillEntity(DataReader));
-                    //return Collection;//TODO REMOVER AQUI APOS DEBUGS
                 }
             }
             return Collection;
         }
-
-
-
-
-
-
     }
 }

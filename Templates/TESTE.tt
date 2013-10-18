@@ -1,5 +1,5 @@
 ﻿<#@ template language="C#" debug="true" HostSpecific="true" #>
-<#@ output extension="cs" #>
+<#@ output extension="cs" appendPath="\{Entity}\Teste"#>
 <#@ import namespace="Entities = QuickCodeSel.Data.Entities"#>
 <#@ import namespace="Util = QuickCodeSel.Util"#>
 <#@ import namespace="Host = QuickCodeSel.TemplateProcessor"#>

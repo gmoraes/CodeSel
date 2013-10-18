@@ -121,6 +121,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\DataSources\QuickCodeSel.Data.Entities.Column.datasource" />
     <None Include="Properties\DataSources\QuickCodeSel.Data.Entities.Table.datasource" />
@@ -148,6 +149,45 @@
       <Project>{7E682893-7BFA-4E51-8D3B-6814E3A632C9}</Project>
       <Name>Util</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1382110814_Open_file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1382110743_config.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1382111499_cog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1382110681_table_multiple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1382116376_play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1382117175_database_go.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1382118477_new doc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1382119156_document-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1382119321_params.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1382119585_newspaper_go.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1382119585_newspaper_go1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1382120804_process.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1382132604_database_connect.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

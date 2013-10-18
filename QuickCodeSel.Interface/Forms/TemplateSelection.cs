@@ -38,18 +38,21 @@ namespace QuickCodeSel.Interface
 
         public void FillDataGridTemplates(string[] Templates)
         {
-            List<InterfaceEntities.TableTemplate> Collection = new List<InterfaceEntities.TableTemplate>();
-            foreach (var template in Templates)
+            if (Templates.Count() > 0)
             {
-                var item = new InterfaceEntities.TableTemplate();
-                item.TemplateName = Path.GetFileName(template);
-                item.TemplatePath = template;
-                item.Tables = Tables.Select(table => (Entities.Table)table.Clone()).ToList();
-                item.Configuration = new Host.Configuration() { CreateDirectory = true, OnExistingOverwrite = true };
-                Collection.Add(item);
+                List<InterfaceEntities.TableTemplate> Collection = new List<InterfaceEntities.TableTemplate>();
+                foreach (var template in Templates)
+                {
+                    var item = new InterfaceEntities.TableTemplate();
+                    item.TemplateName = Path.GetFileName(template);
+                    item.TemplatePath = template;
+                    item.Tables = Tables.Select(table => (Entities.Table)table.Clone()).ToList();
+                    item.Configuration = new Host.Configuration() { CreateDirectory = true, OnExistingOverwrite = true };
+                    Collection.Add(item);
+                }
+                dtGridTemplates.DataSource = Collection;
+                this.dtGridTemplates.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellContentClick);
             }
-            dtGridTemplates.DataSource = Collection;
-            this.dtGridTemplates.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellContentClick);
         }
 
         private void CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -77,19 +80,28 @@ namespace QuickCodeSel.Interface
 
         private void btnProcessTemplate_Click(object sender, EventArgs e)
         {
-            var Tables = (List<InterfaceEntities.TableTemplate>)dtGridTemplates.DataSource;
-            if (Tables.FirstOrDefault(item => string.IsNullOrEmpty(item.TemplateOutput)) != null)
+            var tableTemplate = new List<InterfaceEntities.TableTemplate>();
+            if (dtGridViewTryCast<List<InterfaceEntities.TableTemplate>>(out tableTemplate))
             {
-                MessageBox.Show("All templates must have an output path specified!", "Error!");
-            }
+                if (tableTemplate.FirstOrDefault(item => string.IsNullOrEmpty(item.TemplateOutput)) != null)
+                {
+                    MessageBox.Show("All templates must have an output path specified!", "Error!");
+                    return;
+                }
 
-            if (Tables.FirstOrDefault(item => item.SelectedTables.Count == 0) != null)
+                if (tableTemplate.FirstOrDefault(item => item.SelectedTables.Count == 0) != null)
+                {
+                    MessageBox.Show("All templates must have at least one table selected!", "Error!");
+                    return;
+                }
+
+                PopProcessTemplate process = new PopProcessTemplate(tableTemplate);
+                process.ShowDialog();
+            }
+            else
             {
-                MessageBox.Show("All templates must have at least one table selected!", "Error!");
+                MessageBox.Show("You have to select at least one template!", "Error!");
             }
-
-            PopProcessTemplate process = new PopProcessTemplate(Tables);
-            process.ShowDialog();
         }
 
         private void btnAddGlobalParameter_Click(object sender, EventArgs e)
@@ -100,8 +112,12 @@ namespace QuickCodeSel.Interface
 
         private void btConfiguration_Click(object sender, EventArgs e)
         {
-            PopSetUpConfiguration config = new PopSetUpConfiguration((List<InterfaceEntities.TableTemplate>)dtGridTemplates.DataSource);
-            config.ShowDialog();
+            var tableTemplate = new List<InterfaceEntities.TableTemplate>();
+            if (dtGridViewTryCast<List<InterfaceEntities.TableTemplate>>(out tableTemplate))
+            {
+                PopSetUpConfiguration config = new PopSetUpConfiguration(tableTemplate);
+                config.ShowDialog();
+            }
         }
 
         private void btnGlobalOutput_Click(object sender, EventArgs e)
@@ -110,6 +126,45 @@ namespace QuickCodeSel.Interface
             foreach (DataGridViewRow row in dtGridTemplates.Rows)
             {
                 row.Cells["TemplateOutput"].Value = folderBrowserDialog.SelectedPath;
+                var content = File.ReadAllText(row.Cells["TemplatePath"].Value.ToString());
+                var index = content.IndexOf("appendPath=\"");
+                if (index > 0)
+                {
+                    content = content.Substring(index).Replace("appendPath=\"", "");
+                    var concat = content.Substring(0, content.IndexOf("\""));
+                    concat = concat.StartsWith("\\") ? concat : "\\" + concat;
+                    row.Cells["TemplateOutput"].Value = String.Concat(folderBrowserDialog.SelectedPath, concat);
+                }
+            }
+        }
+
+        private void btnAllTables_Click(object sender, EventArgs e)
+        {
+            var tableTemplate = new List<InterfaceEntities.TableTemplate>();
+            if (dtGridViewTryCast<List<InterfaceEntities.TableTemplate>>(out tableTemplate))
+            {
+                var tables = this.Tables.Select(table => (Entities.Table)table.Clone()).ToList();
+                PopEditTables popTables = new PopEditTables(tables);
+                popTables.ShowDialog();
+                tableTemplate.ForEach(tableTemp => tableTemp.Tables = tables.Select(table => (Entities.Table)table.Clone()).ToList());
+            }
+            else
+            {
+                MessageBox.Show("You have to select at least one template to edit all tables!", "Error!");
+            }
+        }
+
+        private bool dtGridViewTryCast<T>(out T Obj)
+        {
+            try
+            {
+                Obj = (T)dtGridTemplates.DataSource;
+                return true;
+            }
+            catch
+            {
+                Obj = default(T);
+                return false;
             }
         }
     }

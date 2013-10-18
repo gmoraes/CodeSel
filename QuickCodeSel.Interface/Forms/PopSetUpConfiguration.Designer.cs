@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PopSetUpConfiguration));
             this.chkOverwrite = new System.Windows.Forms.CheckBox();
             this.chkWarnOverwrite = new System.Windows.Forms.CheckBox();
             this.chkCreateDirectory = new System.Windows.Forms.CheckBox();
@@ -85,6 +86,7 @@
             this.Controls.Add(this.chkWarnOverwrite);
             this.Controls.Add(this.chkOverwrite);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PopSetUpConfiguration";

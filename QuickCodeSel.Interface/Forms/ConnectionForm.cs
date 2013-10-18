@@ -23,7 +23,7 @@ namespace QuickCodeSel.Interface
             {
                 this.Cursor = Cursors.WaitCursor;
                 btnConnect.Enabled = false;
-                btnConnect.Text = "Connecting...";
+                btnConnect.Text = "         Connecting...";
                 lblCurrentAction.ForeColor = Color.Blue;
                 lblCurrentAction.Text = "Gathering information from server...";
                 List<Entities.Database> Databases = Entities.Database.ListDatabases(txtConnection.Text);

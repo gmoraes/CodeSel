@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectionForm));
             this.txtConnection = new System.Windows.Forms.TextBox();
             this.lblConnection = new System.Windows.Forms.Label();
-            this.btnConnect = new System.Windows.Forms.Button();
             this.lblCurrentAction = new System.Windows.Forms.Label();
+            this.btnConnect = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtConnection
@@ -51,36 +52,40 @@
             this.lblConnection.TabIndex = 1;
             this.lblConnection.Text = "Connection String:";
             // 
-            // btnConnect
-            // 
-            this.btnConnect.Location = new System.Drawing.Point(319, 58);
-            this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(144, 36);
-            this.btnConnect.TabIndex = 2;
-            this.btnConnect.Text = "Connect";
-            this.btnConnect.UseVisualStyleBackColor = true;
-            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
-            // 
             // lblCurrentAction
             // 
             this.lblCurrentAction.AutoSize = true;
             this.lblCurrentAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentAction.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblCurrentAction.Location = new System.Drawing.Point(13, 66);
+            this.lblCurrentAction.Location = new System.Drawing.Point(13, 64);
             this.lblCurrentAction.Name = "lblCurrentAction";
             this.lblCurrentAction.Size = new System.Drawing.Size(43, 13);
             this.lblCurrentAction.TabIndex = 4;
             this.lblCurrentAction.Text = "Ready";
             // 
+            // btnConnect
+            // 
+            this.btnConnect.Image = global::QuickCodeSel.Interface.Properties.Resources._1382132604_database_connect;
+            this.btnConnect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConnect.Location = new System.Drawing.Point(351, 55);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.btnConnect.Size = new System.Drawing.Size(112, 30);
+            this.btnConnect.TabIndex = 2;
+            this.btnConnect.Text = "     Connect";
+            this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
+            // 
             // ConnectionForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(475, 100);
+            this.ClientSize = new System.Drawing.Size(475, 97);
             this.Controls.Add(this.lblCurrentAction);
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.lblConnection);
             this.Controls.Add(this.txtConnection);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ConnectionForm";

@@ -17,6 +17,7 @@ namespace QuickCodeSel.Interface
     public partial class PopProcessTemplate : Form
     {
         List<InterfaceEntities.TableTemplate> Tables;
+        public Queue<string> Messages = new Queue<string>();
 
         public PopProcessTemplate(List<InterfaceEntities.TableTemplate> Tables)
         {
@@ -29,8 +30,10 @@ namespace QuickCodeSel.Interface
             progressBar.Maximum = Tables.Sum(item => item.SelectedTables.Count);
             progressBar.Step = 1;
             progressBar.Value = 0;
+            timer.Enabled = true;
             ThreadStart thread = new ThreadStart(Process);
             Thread thrd = new Thread(thread);
+            richTxtBoxLog.Focus();
             thrd.Start();
         }
 
@@ -43,14 +46,31 @@ namespace QuickCodeSel.Interface
                 {
                     using (var Processor = new TemplateProcessor.TemplateProcessor(TemplateContent, template.TemplatePath, template.TemplateOutput.Replace("{Entity}", table.CSName), InterfaceEntities.TableTemplate.ParameterFullSet(table), template.Configuration))
                     {
-                        Invoke((MethodInvoker)delegate
-                        {
-                            richTxtBoxLog.AppendText(Processor.ProcessTemplate(table.CSName));
-                            this.progressBar.PerformStep();
-                        });
+                        Messages.Enqueue(Processor.ProcessTemplate(table.CSName));
+                        //Invoke((MethodInvoker)delegate
+                        //{
+                        //    richTxtBoxLog.AppendText(Processor.ProcessTemplate(table.CSName));
+                        //    this.progressBar.PerformStep();
+                        //});
                     }
                 }
             }
+            Invoke((MethodInvoker)delegate
+            {
+                timer.Enabled = false;
+                progressBar.Value = progressBar.Maximum;
+            });
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            timer.Enabled = false;
+            while (Messages.Count > 0) 
+            {
+                richTxtBoxLog.AppendText(Messages.Dequeue());
+                progressBar.PerformStep();
+            }
+            timer.Enabled = true;
         }
     }
 }
