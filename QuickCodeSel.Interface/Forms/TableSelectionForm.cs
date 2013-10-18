@@ -13,6 +13,8 @@ namespace QuickCodeSel.Interface
     public partial class TableSelectionForm : Form
     {
         Dictionary<string, List<Entities.Table>> DataDictionary;
+        Dictionary<string, List<string>> TablesToMany;
+        Dictionary<string, List<string>> TablesToOne;
 
         public TableSelectionForm(List<Entities.Database> Databases)
         {
@@ -40,6 +42,9 @@ namespace QuickCodeSel.Interface
             {
                 btnChooseTemplates.Enabled = false;
             }
+
+            TablesToMany = Entities.Table.ListOneToManyTablesDictionary(((ComboBox)sender).SelectedValue.ToString());
+            TablesToOne = Entities.Table.ListOneToOneTablesDictionary(((ComboBox)sender).SelectedValue.ToString());
             lblCurrentAction.Text = "";
             this.Cursor = Cursors.Arrow;
         }

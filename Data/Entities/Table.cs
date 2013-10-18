@@ -230,6 +230,18 @@ namespace QuickCodeSel.Data.Entities
             return DB.ListOneToManyTables(TableName, Database);
         }
 
+        public static Dictionary<string, List<string>> ListOneToOneTablesDictionary(string Database)
+        {
+            DB.Table DB = new DB.Table();
+            return DB.ListOneToOneTableDictionary(Database);
+        }
+
+        public static Dictionary<string, List<string>> ListOneToManyTablesDictionary(string Database)
+        {
+            DB.Table DB = new DB.Table();
+            return DB.ListOneToManyTableDictionary(Database);
+        }
+
         public string ToXml()
         {
             try

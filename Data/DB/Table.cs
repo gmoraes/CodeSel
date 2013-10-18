@@ -94,5 +94,65 @@ namespace QuickCodeSel.Data.DB
             }
             return Collection;
         }
+
+        public Dictionary<string, List<string>> ListOneToOneTableDictionary(string Database)
+        {
+            Dictionary<string, List<string>> Collection = new Dictionary<string, List<string>>();
+
+            StringBuilder SQL = new StringBuilder();
+            SQL.AppendLine(" SELECT TABLE_NAME,");
+            SQL.AppendLine("        REFERENCED_TABLE_NAME");
+            SQL.AppendLine("   FROM information_schema.KEY_COLUMN_USAGE");
+            SQL.AppendLine("  WHERE CONSTRAINT_SCHEMA = ?db_name");
+            SQL.AppendLine("    AND REFERENCED_TABLE_NAME IS NOT NULL;");
+
+            MySqlCommand Command = GetSqlStringCommand(SQL.ToString());
+
+            AddInParameter(Command, "db_name", Database);
+
+            using (MySqlDataReader DataReader = ExecuteReader(Command))
+            {
+                while (DataReader.Read())
+                {
+                    var Key = FillAtribute<string>(DataReader, "TABLE_NAME");
+                    if (!Collection.ContainsKey(Key)) 
+                    {
+                        Collection.Add(Key, new List<string>());
+                    }
+                    Collection[Key].Add(FillAtribute<string>(DataReader, "REFERENCED_TABLE_NAME"));
+                }
+            }
+            return Collection;
+        }
+
+        public Dictionary<string, List<string>> ListOneToManyTableDictionary(string Database)
+        {
+            Dictionary<string, List<string>> Collection = new Dictionary<string, List<string>>();
+
+            StringBuilder SQL = new StringBuilder();
+            SQL.AppendLine(" SELECT TABLE_NAME,");
+            SQL.AppendLine("        REFERENCED_TABLE_NAME");
+            SQL.AppendLine("   FROM information_schema.KEY_COLUMN_USAGE");
+            SQL.AppendLine("  WHERE CONSTRAINT_SCHEMA = ?db_name");
+            SQL.AppendLine("    AND REFERENCED_TABLE_NAME IS NOT NULL");
+
+            MySqlCommand Command = GetSqlStringCommand(SQL.ToString());
+
+            AddInParameter(Command, "db_name", Database);
+
+            using (MySqlDataReader DataReader = ExecuteReader(Command))
+            {
+                while (DataReader.Read())
+                {
+                    var Key = FillAtribute<string>(DataReader, "TABLE_NAME");
+                    if (!Collection.ContainsKey(Key))
+                    {
+                        Collection.Add(Key, new List<string>());
+                    }
+                    Collection[Key].Add(FillAtribute<string>(DataReader, "REFERENCED_TABLE_NAME"));
+                }
+            }
+            return Collection;
+        }
     }
 }
