@@ -144,12 +144,12 @@ namespace QuickCodeSel.Data.DB
             {
                 while (DataReader.Read())
                 {
-                    var Key = FillAtribute<string>(DataReader, "TABLE_NAME");
+                    var Key = FillAtribute<string>(DataReader, "REFERENCED_TABLE_NAME");
                     if (!Collection.ContainsKey(Key))
                     {
                         Collection.Add(Key, new List<string>());
                     }
-                    Collection[Key].Add(FillAtribute<string>(DataReader, "REFERENCED_TABLE_NAME"));
+                    Collection[Key].Add(FillAtribute<string>(DataReader, "TABLE_NAME"));
                 }
             }
             return Collection;

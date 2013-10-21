@@ -20,11 +20,6 @@ namespace QuickCodeSel.Interface
         private void btnAddParameter_Click(object sender, EventArgs e)
         {
             lblErrorMessage.ForeColor = Color.Red;
-            if (txtKey.Text.Equals("Table")) 
-            {
-                lblErrorMessage.Text = "This parameter name is used by QuickCodeSel.";
-                return;
-            }
             lblErrorMessage.Text = "";
             if (InterfaceEntities.TableTemplate.Parameters.ContainsKey(txtKey.Text))
             {
@@ -48,6 +43,14 @@ namespace QuickCodeSel.Interface
             InterfaceEntities.TableTemplate.Parameters = new Dictionary<string, string>();
             lblErrorMessage.ForeColor = Color.Green;
             lblErrorMessage.Text = "Cleared.";
+        }
+
+        private void PopAddGlobalParameter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) 
+            {
+                this.Close();
+            }
         }
     }
 }

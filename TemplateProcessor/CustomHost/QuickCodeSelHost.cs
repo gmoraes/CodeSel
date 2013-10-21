@@ -15,19 +15,21 @@ namespace QuickCodeSel.TemplateProcessor
     [Serializable]
     public class QuickCodeSelHost : ITextTemplatingEngineHost
     {
-        internal Dictionary<string, object> Parameters { get; set; }
-        public T GetParameter<T>(string Key) 
+        public object Data { get; internal set; }
+
+        internal Dictionary<string, string> Parameters { get; set; }
+        public string GetParameter(string Key)
         {
             try
             {
-                return (T)Parameters[Key];
+                return Parameters[Key];
             }
-            catch 
+            catch
             {
-                return default(T);
+                return "<#" + Key + "#>";
             }
         }
-        
+
         internal object GeneratedFilePathValue;
         public object GeneratedFilePath { get { return GeneratedFilePathValue; } set { GeneratedFilePathValue = value; } }
 

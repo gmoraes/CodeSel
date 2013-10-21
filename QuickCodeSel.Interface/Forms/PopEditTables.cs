@@ -12,10 +12,20 @@ namespace QuickCodeSel.Interface
 {
     public partial class PopEditTables : Form
     {
+        List<Entities.Table> SelectedTables;
+
         public PopEditTables(List<Entities.Table> Tables)
         {
             InitializeComponent();
             dtGridTablesTemplate.DataSource = Tables;
+        }
+
+        public PopEditTables(List<Entities.Table> SelectedTables, List<Entities.Table> AllTables)
+        {
+            InitializeComponent();
+            this.SelectedTables = SelectedTables;
+            AllTables.ForEach(table => table.Selected = SelectedTables.Select<Entities.Table, string>(item => item.Name).ToArray().Contains(table.Name));
+            dtGridTablesTemplate.DataSource = AllTables;
         }
 
         private void btnClose_Click(object sender, EventArgs e)

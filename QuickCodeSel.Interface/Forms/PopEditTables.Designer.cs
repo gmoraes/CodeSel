@@ -32,11 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PopEditTables));
             this.dtGridTablesTemplate = new System.Windows.Forms.DataGridView();
             this.CheckTable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.chkAllTables = new System.Windows.Forms.CheckBox();
             this.Table = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CSName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnClose = new System.Windows.Forms.Button();
+            this.chkAllTables = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridTablesTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -68,26 +68,6 @@
             this.CheckTable.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CheckTable.Width = 20;
             // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(109, 324);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 2;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // chkAllTables
-            // 
-            this.chkAllTables.AutoSize = true;
-            this.chkAllTables.Location = new System.Drawing.Point(19, 12);
-            this.chkAllTables.Name = "chkAllTables";
-            this.chkAllTables.Size = new System.Drawing.Size(15, 14);
-            this.chkAllTables.TabIndex = 3;
-            this.chkAllTables.UseVisualStyleBackColor = true;
-            this.chkAllTables.CheckedChanged += new System.EventHandler(this.chkAllTables_CheckedChanged);
-            // 
             // Table
             // 
             this.Table.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -109,6 +89,26 @@
             // tableBindingSource
             // 
             this.tableBindingSource.DataSource = typeof(QuickCodeSel.Data.Entities.Table);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(109, 324);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 2;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // chkAllTables
+            // 
+            this.chkAllTables.AutoSize = true;
+            this.chkAllTables.Location = new System.Drawing.Point(19, 12);
+            this.chkAllTables.Name = "chkAllTables";
+            this.chkAllTables.Size = new System.Drawing.Size(15, 14);
+            this.chkAllTables.TabIndex = 3;
+            this.chkAllTables.UseVisualStyleBackColor = true;
+            this.chkAllTables.CheckedChanged += new System.EventHandler(this.chkAllTables_CheckedChanged);
             // 
             // PopEditTables
             // 

@@ -93,6 +93,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Global Configuration";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PopSetUpConfiguration_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PopSetUpConfiguration_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

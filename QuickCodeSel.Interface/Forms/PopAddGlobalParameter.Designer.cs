@@ -119,6 +119,7 @@
             this.Name = "PopAddGlobalParameter";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Global Parameters";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PopAddGlobalParameter_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

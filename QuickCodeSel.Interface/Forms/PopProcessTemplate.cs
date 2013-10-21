@@ -16,6 +16,9 @@ namespace QuickCodeSel.Interface
 {
     public partial class PopProcessTemplate : Form
     {
+        ThreadStart thread;
+        Thread thrd;
+
         List<InterfaceEntities.TableTemplate> Tables;
         public Queue<string> Messages = new Queue<string>();
 
@@ -31,8 +34,8 @@ namespace QuickCodeSel.Interface
             progressBar.Step = 1;
             progressBar.Value = 0;
             timer.Enabled = true;
-            ThreadStart thread = new ThreadStart(Process);
-            Thread thrd = new Thread(thread);
+            thread = new ThreadStart(Process);
+            thrd = new Thread(thread);
             richTxtBoxLog.Focus();
             thrd.Start();
         }
@@ -44,14 +47,9 @@ namespace QuickCodeSel.Interface
                 string TemplateContent = File.ReadAllText(template.TemplatePath);
                 foreach (Entities.Table table in template.SelectedTables)
                 {
-                    using (var Processor = new TemplateProcessor.TemplateProcessor(TemplateContent, template.TemplatePath, template.TemplateOutput.Replace("{Entity}", table.CSName), InterfaceEntities.TableTemplate.ParameterFullSet(table), template.Configuration))
+                    using (var Processor = new TemplateProcessor.TemplateProcessor(TemplateContent, template.TemplatePath, template.TemplateOutput.Replace("{Entity}", table.CSName), InterfaceEntities.TableTemplate.ParameterFullSet(table), table, template.Configuration))
                     {
                         Messages.Enqueue(Processor.ProcessTemplate(table.CSName));
-                        //Invoke((MethodInvoker)delegate
-                        //{
-                        //    richTxtBoxLog.AppendText(Processor.ProcessTemplate(table.CSName));
-                        //    this.progressBar.PerformStep();
-                        //});
                     }
                 }
             }
@@ -59,6 +57,7 @@ namespace QuickCodeSel.Interface
             {
                 timer.Enabled = false;
                 progressBar.Value = progressBar.Maximum;
+                richTxtBoxLog.AppendText("[INFO]Finished.");
             });
         }
 
@@ -71,6 +70,14 @@ namespace QuickCodeSel.Interface
                 progressBar.PerformStep();
             }
             timer.Enabled = true;
+        }
+
+        private void PopProcessTemplate_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (thrd.IsAlive) 
+            {
+                thrd.Abort();
+            }
         }
     }
 }

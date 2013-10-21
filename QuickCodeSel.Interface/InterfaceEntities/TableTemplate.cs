@@ -18,10 +18,9 @@ namespace QuickCodeSel.Interface.InterfaceEntities
         public string TemplatePath { get; set; }
         public string TemplateOutput { get; set; }
 
-        public static Dictionary<string, object> ParameterFullSet(Entities.Table Table)
+        public static Dictionary<string, string> ParameterFullSet(Entities.Table Table)
         {
-            Dictionary<string, object> Parameters = new Dictionary<string, object>();
-            Parameters.Add("Table", Table);
+            Dictionary<string, string> Parameters = new Dictionary<string, string>();
             foreach (var item in TableTemplate.Parameters)
             {
                 Parameters.Add(item.Key, item.Value);

@@ -64,5 +64,13 @@ namespace QuickCodeSel.Interface
                 template.Configuration.OnExistingOverwrite = this.chkOverwrite.Checked;
             }
         }
+
+        private void PopSetUpConfiguration_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

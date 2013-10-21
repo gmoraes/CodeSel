@@ -107,6 +107,7 @@
             this.Name = "PopProcessTemplate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Processing Form";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PopProcessTemplate_FormClosing);
             this.grpBoxStatus.ResumeLayout(false);
             this.grpLog.ResumeLayout(false);
             this.ResumeLayout(false);

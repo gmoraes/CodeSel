@@ -10,8 +10,18 @@ namespace QuickCodeSel.Debug
     {
         static void Main(string[] args)
         {
-            Process process = new Process();
-            int i = process.ProcessTeste(args);
+            try
+            {
+                Process process = new Process();
+                int i = process.Debug(args);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("ERROR: " + ex.Message);
+            }
+            finally 
+            {
+            }
         }
     }
 }

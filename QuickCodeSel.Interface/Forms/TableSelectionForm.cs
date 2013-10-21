@@ -24,6 +24,7 @@ namespace QuickCodeSel.Interface
             this.cmbTables.DisplayMember = "Name";
             this.cmbTables.DataSource = Databases;
             progressBar.Step = 100;
+            this.dtGridTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellContentClick);
         }
 
         private void cmbTables_SelectedIndexChanged(object sender, EventArgs e)
@@ -37,16 +38,39 @@ namespace QuickCodeSel.Interface
                     DataDictionary.Add(database, Entities.Table.ListTables(database));
                 dtGridTable.DataSource = DataDictionary[database];
                 btnChooseTemplates.Enabled = true;
+                TablesToMany = Entities.Table.ListOneToManyTablesDictionary(database);
+                TablesToOne = Entities.Table.ListOneToOneTablesDictionary(database);                
             }
-            else 
+            else
             {
                 btnChooseTemplates.Enabled = false;
             }
 
-            TablesToMany = Entities.Table.ListOneToManyTablesDictionary(((ComboBox)sender).SelectedValue.ToString());
-            TablesToOne = Entities.Table.ListOneToOneTablesDictionary(((ComboBox)sender).SelectedValue.ToString());
             lblCurrentAction.Text = "";
             this.Cursor = Cursors.Arrow;
+        }
+
+        private void CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && ((DataGridView)sender).Columns[e.ColumnIndex].GetType() == typeof(DataGridViewButtonColumn))
+            {
+                var Tables = ((List<Entities.Table>)dtGridTable.DataSource).Select(table => (Entities.Table)table.Clone()).ToList();
+                var cell = ((DataGridView)sender).Columns[e.ColumnIndex];
+
+                switch (cell.DataPropertyName)
+                {
+                    case "OneToOne":
+                        PopEditTables popToOne = new PopEditTables(((Entities.Table)dtGridTable.Rows[e.RowIndex].DataBoundItem).ToOneTables, Tables);
+                        popToOne.ShowDialog();
+                        ((Entities.Table)dtGridTable.Rows[e.RowIndex].DataBoundItem).ToOneTables = Tables.Where(table => table.Selected).ToList();
+                        break;
+                    case "OneToMany":
+                        PopEditTables popToMany = new PopEditTables(((Entities.Table)dtGridTable.Rows[e.RowIndex].DataBoundItem).ToManyTables, Tables);
+                        popToMany.ShowDialog();
+                        ((Entities.Table)dtGridTable.Rows[e.RowIndex].DataBoundItem).ToManyTables = Tables.Where(table => table.Selected).ToList();
+                        break;
+                }
+            }
         }
 
         private void dtGridTable_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -57,10 +81,20 @@ namespace QuickCodeSel.Interface
             {
                 lblCurrentAction.Text = "Loading columns for " + lTable.Name + "...";
                 lTable.Columns = Entities.Column.ListColumnsByTableNameAndDbKey(lTable.Name, cmbTables.SelectedValue.ToString());
+                lTable.ToManyTables = DataDictionary[cmbTables.SelectedValue.ToString()]
+                    .Where(item =>
+                        TablesToMany.ContainsKey(lTable.Name) ? TablesToMany[lTable.Name].Contains(item.Name) : false)
+                    .ToList();
+
+                lTable.ToOneTables = DataDictionary[cmbTables.SelectedValue.ToString()]
+                    .Where(item =>
+                        TablesToOne.ContainsKey(lTable.Name) ? TablesToOne[lTable.Name].Contains(item.Name) : false)
+                    .ToList();
             }
             dtGridColumn.DataSource = lTable.Columns;
             lblCurrentAction.Text = "";
             this.Cursor = Cursors.Arrow;
+            this.Validate();
         }
 
         private void btnChooseTemplates_Click(object sender, EventArgs e)
@@ -75,9 +109,17 @@ namespace QuickCodeSel.Interface
                 {
                     lblCurrentAction.Text = "Preparing " + Table.Name + " for template generation...";
                     Table.Columns = Entities.Column.ListColumnsByTableNameAndDbKey(Table.Name, cmbTables.SelectedValue.ToString());
+                    Table.ToManyTables = DataDictionary[cmbTables.SelectedValue.ToString()]
+                        .Where(item =>
+                            TablesToMany.ContainsKey(Table.Name) ? TablesToMany[Table.Name].Contains(item.Name) : false)
+                        .ToList();
+                    Table.ToOneTables = DataDictionary[cmbTables.SelectedValue.ToString()]
+                        .Where(item =>
+                            TablesToOne.ContainsKey(Table.Name) ? TablesToOne[Table.Name].Contains(item.Name) : false)
+                        .ToList();
                 }
-                Table.ToOneTables = Entities.Table.ListOneToOneTables(Table.Name, cmbTables.SelectedValue.ToString());
-                Table.ToManyTables = Entities.Table.ListOneToManyTables(Table.Name, cmbTables.SelectedValue.ToString());
+                //Table.ToOneTables = Entities.Table.ListOneToOneTables(Table.Name, cmbTables.SelectedValue.ToString());
+                //Table.ToManyTables = Entities.Table.ListOneToManyTables(Table.Name, cmbTables.SelectedValue.ToString());
                 progressBar.PerformStep();
             }
 

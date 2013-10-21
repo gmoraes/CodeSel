@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\EnumSpecification.cs" />
+    <Compile Include="Util\Extensions.cs" />
     <Compile Include="Util\StringHelper.cs" />
   </ItemGroup>
   <ItemGroup />

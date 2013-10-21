@@ -26,6 +26,7 @@ namespace QuickCodeSel.Interface
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + @"\Templates");
             }
+            this.dtGridTemplates.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellContentClick);
         }
 
         private void btnAddTemplate_Click(object sender, EventArgs e)
@@ -51,7 +52,6 @@ namespace QuickCodeSel.Interface
                     Collection.Add(item);
                 }
                 dtGridTemplates.DataSource = Collection;
-                this.dtGridTemplates.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellContentClick);
             }
         }
 
@@ -166,14 +166,6 @@ namespace QuickCodeSel.Interface
                 Obj = default(T);
                 return false;
             }
-        }
-    }
-
-    static class Extensions
-    {
-        public static IList<T> Clone<T>(this IList<T> listToClone) where T : ICloneable
-        {
-            return listToClone.Select(item => (T)item.Clone()).ToList();
         }
     }
 }
