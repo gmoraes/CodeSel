@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using DB = QuickCodeSel.Data.DB;
 using System.Xml.Serialization;
+using System.Runtime.Serialization;
 
 namespace QuickCodeSel.Data.Entities
 {
@@ -37,6 +38,7 @@ namespace QuickCodeSel.Data.Entities
             }
         }
 
+        [XmlIgnore]
         public List<Column> FKList
         {
             get
@@ -51,6 +53,7 @@ namespace QuickCodeSel.Data.Entities
                 }
             }
         }
+        [XmlIgnore]
         public List<Column> FKPKList
         {
             get
@@ -65,6 +68,7 @@ namespace QuickCodeSel.Data.Entities
                 }
             }
         }
+        [XmlIgnore]
         public List<Column> AIList
         {
             get
@@ -79,6 +83,7 @@ namespace QuickCodeSel.Data.Entities
                 }
             }
         }
+        [XmlIgnore]
         public List<Column> PKAIList
         {
             get
@@ -93,6 +98,7 @@ namespace QuickCodeSel.Data.Entities
                 }
             }
         }
+        [XmlIgnore]
         public List<Column> PKList
         {
             get
@@ -107,6 +113,7 @@ namespace QuickCodeSel.Data.Entities
                 }
             }
         }
+        [XmlIgnore]
         public List<Column> UNList
         {
             get
@@ -121,6 +128,7 @@ namespace QuickCodeSel.Data.Entities
                 }
             }
         }
+        [XmlIgnore]
         public List<Column> NonFKList
         {
             get
@@ -135,6 +143,7 @@ namespace QuickCodeSel.Data.Entities
                 }
             }
         }
+        [XmlIgnore]
         public List<Column> NonNullAble
         {
             get
@@ -149,6 +158,7 @@ namespace QuickCodeSel.Data.Entities
                 }
             }
         }
+        [XmlIgnore]
         public List<Column> NonPKList
         {
             get
@@ -246,6 +256,12 @@ namespace QuickCodeSel.Data.Entities
         {
             try
             {
+                var table = (Entities.Table)this.Clone();
+                table.ToOneTables = this.ToOneTables.Select(item => (Table)item.Clone()).ToList();
+                table.ToManyTables = this.ToManyTables.Select(item => (Table)item.Clone()).ToList();
+                table.ToOneTables.ForEach(item => { item.ToOneTables = new List<Table>(); item.ToManyTables = new List<Table>(); });
+                table.ToManyTables.ForEach(item => { item.ToOneTables = new List<Table>(); item.ToManyTables = new List<Table>(); });
+
                 string xmlText;
                 Type objectType = this.GetType();
                 XmlSerializer xmlSerializer = new XmlSerializer(objectType);
@@ -253,7 +269,7 @@ namespace QuickCodeSel.Data.Entities
                 using (System.Xml.XmlTextWriter xmlTextWriter =
                    new System.Xml.XmlTextWriter(memoryStream, Encoding.GetEncoding("iso-8859-1")) { Formatting = System.Xml.Formatting.Indented })
                 {
-                    xmlSerializer.Serialize(xmlTextWriter, this);
+                    xmlSerializer.Serialize(xmlTextWriter, table);
                     memoryStream = (System.IO.MemoryStream)xmlTextWriter.BaseStream;
                     xmlText = Encoding.GetEncoding("iso-8859-1").GetString(memoryStream.ToArray());
                     memoryStream.Dispose();

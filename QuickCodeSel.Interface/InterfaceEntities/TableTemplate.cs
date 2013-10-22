@@ -18,16 +18,6 @@ namespace QuickCodeSel.Interface.InterfaceEntities
         public string TemplatePath { get; set; }
         public string TemplateOutput { get; set; }
 
-        public static Dictionary<string, string> ParameterFullSet(Entities.Table Table)
-        {
-            Dictionary<string, string> Parameters = new Dictionary<string, string>();
-            foreach (var item in TableTemplate.Parameters)
-            {
-                Parameters.Add(item.Key, item.Value);
-            }
-            return Parameters;
-        }
-
         public List<Entities.Table> Tables { get; set; }
         public List<Entities.Table> SelectedTables
         {

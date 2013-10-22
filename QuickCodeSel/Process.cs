@@ -17,7 +17,17 @@ namespace QuickCodeSel.Debug
     class Process
     {
         public string DebugEntity { get { return File.ReadAllText(Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + @"\DebugEntities\DebugEntity.xml"); } }
-        public string DebugTemplates { get { return Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + @"\DebugEntities\DebugTemplates"; } }
+        public string DebugTemplates
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(ConfigurationSettings.AppSettings["TargetFilesUrl"])) return ConfigurationSettings.AppSettings["TargetFilesUrl"];
+                else 
+                {
+                    throw new Exception("Set the template path in the app config in order to debug the them.");
+                }
+            }
+        }
 
         public Process()
         {

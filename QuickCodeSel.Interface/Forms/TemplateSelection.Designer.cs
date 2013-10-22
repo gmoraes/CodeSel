@@ -32,13 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TemplateSelection));
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.dtGridTemplates = new System.Windows.Forms.DataGridView();
-            this.TemplateName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TemplatePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TemplateOutput = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AppendOutput = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Config = new System.Windows.Forms.DataGridViewButtonColumn();
             this.EditTables = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.tableTemplateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.btnProcessTemplate = new System.Windows.Forms.Button();
             this.btnAllTables = new System.Windows.Forms.Button();
@@ -48,10 +44,15 @@
             this.btnAddTemplate = new System.Windows.Forms.Button();
             this.tableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.lblDebug = new System.Windows.Forms.Label();
+            this.TemplateName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TemplatePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TemplateOutput = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableTemplateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dtGridTemplates)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tableTemplateBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableTemplateBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog
@@ -84,29 +85,6 @@
             this.dtGridTemplates.Size = new System.Drawing.Size(607, 276);
             this.dtGridTemplates.TabIndex = 4;
             // 
-            // TemplateName
-            // 
-            this.TemplateName.DataPropertyName = "TemplateName";
-            this.TemplateName.HeaderText = "Template Name";
-            this.TemplateName.Name = "TemplateName";
-            this.TemplateName.ReadOnly = true;
-            this.TemplateName.Width = 150;
-            // 
-            // TemplatePath
-            // 
-            this.TemplatePath.DataPropertyName = "TemplatePath";
-            this.TemplatePath.HeaderText = "TemplatePath";
-            this.TemplatePath.Name = "TemplatePath";
-            this.TemplatePath.ReadOnly = true;
-            this.TemplatePath.Visible = false;
-            // 
-            // TemplateOutput
-            // 
-            this.TemplateOutput.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TemplateOutput.DataPropertyName = "TemplateOutput";
-            this.TemplateOutput.HeaderText = "Template Output";
-            this.TemplateOutput.Name = "TemplateOutput";
-            // 
             // AppendOutput
             // 
             this.AppendOutput.DataPropertyName = "AppendOutput";
@@ -133,10 +111,6 @@
             this.EditTables.Text = "Edit";
             this.EditTables.UseColumnTextForButtonValue = true;
             this.EditTables.Width = 40;
-            // 
-            // tableTemplateBindingSource
-            // 
-            this.tableTemplateBindingSource.DataSource = typeof(QuickCodeSel.Interface.InterfaceEntities.TableTemplate);
             // 
             // btnProcessTemplate
             // 
@@ -215,11 +189,49 @@
             // 
             this.tableBindingSource1.DataSource = typeof(QuickCodeSel.Data.Entities.Table);
             // 
+            // lblDebug
+            // 
+            this.lblDebug.AutoSize = true;
+            this.lblDebug.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDebug.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lblDebug.Location = new System.Drawing.Point(231, 298);
+            this.lblDebug.Name = "lblDebug";
+            this.lblDebug.Size = new System.Drawing.Size(0, 13);
+            this.lblDebug.TabIndex = 10;
+            // 
+            // TemplateName
+            // 
+            this.TemplateName.DataPropertyName = "TemplateName";
+            this.TemplateName.HeaderText = "Template Name";
+            this.TemplateName.Name = "TemplateName";
+            this.TemplateName.ReadOnly = true;
+            this.TemplateName.Width = 150;
+            // 
+            // TemplatePath
+            // 
+            this.TemplatePath.DataPropertyName = "TemplatePath";
+            this.TemplatePath.HeaderText = "TemplatePath";
+            this.TemplatePath.Name = "TemplatePath";
+            this.TemplatePath.ReadOnly = true;
+            this.TemplatePath.Visible = false;
+            // 
+            // TemplateOutput
+            // 
+            this.TemplateOutput.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TemplateOutput.DataPropertyName = "TemplateOutput";
+            this.TemplateOutput.HeaderText = "Template Output";
+            this.TemplateOutput.Name = "TemplateOutput";
+            // 
+            // tableTemplateBindingSource
+            // 
+            this.tableTemplateBindingSource.DataSource = typeof(QuickCodeSel.Interface.InterfaceEntities.TableTemplate);
+            // 
             // TemplateSelection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(631, 320);
+            this.Controls.Add(this.lblDebug);
             this.Controls.Add(this.btnAllTables);
             this.Controls.Add(this.btnGlobalOutput);
             this.Controls.Add(this.btConfiguration);
@@ -235,10 +247,11 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Template Selection";
             ((System.ComponentModel.ISupportInitialize)(this.dtGridTemplates)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tableTemplateBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableTemplateBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -262,5 +275,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn AppendOutput;
         private System.Windows.Forms.DataGridViewButtonColumn Config;
         private System.Windows.Forms.DataGridViewButtonColumn EditTables;
+        private System.Windows.Forms.Label lblDebug;
     }
 }

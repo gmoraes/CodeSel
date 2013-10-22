@@ -21,6 +21,7 @@ namespace QuickCodeSel.Debug
             }
             finally 
             {
+                GC.Collect();
             }
         }
     }

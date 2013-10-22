@@ -15,6 +15,8 @@ namespace QuickCodeSel.Interface
     public partial class TemplateSelection : Form
     {
         List<Entities.Table> Tables;
+        private string DebugEntityPath { get { return Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + @"\DebugEntities\DebugEntity.xml"; } }
+        public string DebugEntity { get { try { return File.ReadAllText(Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + @"\DebugEntities\DebugEntity.xml"); } catch { return ""; } } }
 
         public TemplateSelection(List<Entities.Table> Tables)
         {
@@ -93,6 +95,33 @@ namespace QuickCodeSel.Interface
                 {
                     MessageBox.Show("All templates must have at least one table selected!", "Error!");
                     return;
+                }
+                if (MessageBox.Show("Would you like to debug the templates before processing them?", "Warning!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (string.IsNullOrEmpty(DebugEntity))
+                    {
+                        MessageBox.Show("The DebugEntity that should be in " + DebugEntityPath + " is either empty or not there. Please verify!", "Error!");
+                        return;
+                    }
+                    StringBuilder Builder = new StringBuilder();
+                    foreach (var table in tableTemplate)
+                    {
+                        lblDebug.Text = "Debugging " + Path.GetFileName(table.TemplatePath) + "...";
+                        if (Host.TemplateProcessor.HasCompilationError(
+                                File.ReadAllText(table.TemplatePath),
+                                table.TemplatePath,
+                                InterfaceEntities.TableTemplate.Parameters,
+                                Entities.Table.XmlToTable(DebugEntity)))
+                        {
+                            Builder.AppendLine(Path.GetFileName(table.TemplatePath) + ",");
+                        }
+                    }
+                    lblDebug.Text = "";
+                    if (!string.IsNullOrEmpty(Builder.ToString()))
+                    {
+                        MessageBox.Show("The Templates: " + Builder.ToString() + " contain errors! Use the debugger: QuickCodeSel.exe for details.", "Error!");
+                        return;
+                    }
                 }
 
                 PopProcessTemplate process = new PopProcessTemplate(tableTemplate);

@@ -26,7 +26,45 @@ namespace QuickCodeSel.TemplateProcessor
             this.TemplatePath = TemplatePath;
         }
 
-        public static string DebugTemplate(string TemplateContent, string TemplatePath, Dictionary<string, string> Parameter, object Data) 
+        public static bool HasCompilationError(string TemplateContent, string TemplatePath, Dictionary<string, string> Parameter, object Data)
+        {
+            bool hasError = false;
+            QuickCodeSelHost host = new QuickCodeSelHost();
+            host.Parameters = Parameter;
+            host.Data = Data;
+            Engine engine = new Engine();
+            try
+            {
+                host.TemplateFileValue = TemplatePath;
+                string output = engine.ProcessTemplate(TemplateContent, host);
+
+                if (host.Errors == null)
+                {
+                    if (string.IsNullOrEmpty(output)) throw new Exception("[ERROR]The result for the template was empty. It means the error occured while excecuting the users code.");
+                }
+                else
+                {
+                    if (host.Errors.HasErrors)
+                    {
+                        throw new Exception("[ERROR]Has errors.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                hasError = true;
+            }
+            finally
+            {
+                host.UnloadAppDomain();
+                engine = null;
+                GC.Collect();
+            }
+
+            return hasError;
+        }
+
+        public static string DebugTemplate(string TemplateContent, string TemplatePath, Dictionary<string, string> Parameter, object Data)
         {
             StringBuilder Builder = new StringBuilder();
             QuickCodeSelHost host = new QuickCodeSelHost();
@@ -53,7 +91,7 @@ namespace QuickCodeSel.TemplateProcessor
                     {
                         Builder.AppendLine("[WARN]This template may be executed! These are the warnings: ");
                     }
-                    else 
+                    else
                     {
                         Builder.AppendLine("[ERROR]This template can't be executed! These are the reasons: ");
                     }
@@ -96,7 +134,7 @@ namespace QuickCodeSel.TemplateProcessor
 
                 if (host.Errors == null)
                 {
-                    if (string.IsNullOrEmpty(output)) throw new Exception("[ERROR]Error while processing template " + OutputPath + " for Entity: " + EntityName + ". Please debug the template.");
+                    if (string.IsNullOrEmpty(output)) throw new Exception("[ERROR]Error while processing template " + Path.GetFileName(TemplatePath) + " for Entity: " + EntityName + ". Please debug the template.");
                     if (!Directory.Exists(Path.GetDirectoryName(generatedFilePath)))
                     {
                         if (Configuration.CreateDirectory)
