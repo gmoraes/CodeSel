@@ -18,6 +18,7 @@ namespace QuickCodeSel.Debug
             catch(Exception ex)
             {
                 Console.WriteLine("ERROR: " + ex.Message);
+                Console.ReadLine();
             }
             finally 
             {

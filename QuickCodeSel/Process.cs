@@ -60,7 +60,11 @@ namespace QuickCodeSel.Debug
                     var Key = Console.ReadLine();
                     Console.WriteLine("Type the Parameter Value: ");
                     var Value = Console.ReadLine();
-                    Parameters.Add(Key, Value);
+                    if (Parameters.ContainsKey(Key)) 
+                    {
+                        Parameters[Key] = Value;
+                        Console.WriteLine("There was a parameter with the given Key. It was replaced.");
+                    }else Parameters.Add(Key, Value);
                     Console.WriteLine("Do you want to keep adding? done/anything");
                 } while (!Console.ReadLine().ToLower().Equals("done"));
             }

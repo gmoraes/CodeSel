@@ -25,6 +25,7 @@ namespace QuickCodeSel.Interface
             InitializeComponent();
             this.SelectedTables = SelectedTables;
             AllTables.ForEach(table => table.Selected = SelectedTables.Select<Entities.Table, string>(item => item.Name).ToArray().Contains(table.Name));
+            //AllTables.ForEach(table => table.Selected = SelectedTables.ToArray().Contains(table));
             dtGridTablesTemplate.DataSource = AllTables;
         }
 

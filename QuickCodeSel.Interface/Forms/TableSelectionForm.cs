@@ -62,12 +62,19 @@ namespace QuickCodeSel.Interface
                     case "OneToOne":
                         PopEditTables popToOne = new PopEditTables(((Entities.Table)dtGridTable.Rows[e.RowIndex].DataBoundItem).ToOneTables, Tables);
                         popToOne.ShowDialog();
-                        ((Entities.Table)dtGridTable.Rows[e.RowIndex].DataBoundItem).ToOneTables = Tables.Where(table => table.Selected).ToList();
+                        //((Entities.Table)dtGridTable.Rows[e.RowIndex].DataBoundItem).ToOneTables = Tables.Where(table => table.Selected).ToList();
+                        ((Entities.Table)dtGridTable.Rows[e.RowIndex].DataBoundItem).ToOneTables = 
+                            ((List<Entities.Table>)dtGridTable.DataSource)
+                            .Where(item => Tables.Where(it => it.Selected).Select(name => name.Name).ToArray().Contains(item.Name)).ToList();
+                        
                         break;
                     case "OneToMany":
                         PopEditTables popToMany = new PopEditTables(((Entities.Table)dtGridTable.Rows[e.RowIndex].DataBoundItem).ToManyTables, Tables);
                         popToMany.ShowDialog();
-                        ((Entities.Table)dtGridTable.Rows[e.RowIndex].DataBoundItem).ToManyTables = Tables.Where(table => table.Selected).ToList();
+                        //((Entities.Table)dtGridTable.Rows[e.RowIndex].DataBoundItem).ToManyTables = Tables.Where(table => table.Selected).ToList();
+                        ((Entities.Table)dtGridTable.Rows[e.RowIndex].DataBoundItem).ToManyTables =
+                            ((List<Entities.Table>)dtGridTable.DataSource)
+                            .Where(item => Tables.Where(it => it.Selected).Select(name => name.Name).ToArray().Contains(item.Name)).ToList();
                         break;
                 }
             }
