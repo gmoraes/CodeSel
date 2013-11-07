@@ -33,14 +33,6 @@
             this.cmbTables = new System.Windows.Forms.ComboBox();
             this.lblSelectTables = new System.Windows.Forms.Label();
             this.dtGridColumn = new System.Windows.Forms.DataGridView();
-            this.columnBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dtGridTable = new System.Windows.Forms.DataGridView();
-            this.tableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.lblCurrentAction = new System.Windows.Forms.Label();
-            this.grpBoxTables = new System.Windows.Forms.GroupBox();
-            this.grpBoxColumns = new System.Windows.Forms.GroupBox();
-            this.btnChooseTemplates = new System.Windows.Forms.Button();
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DbType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isPKDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -48,9 +40,17 @@
             this.isAIDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isUNDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isNullAbleDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.columnBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dtGridTable = new System.Windows.Forms.DataGridView();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OneToOne = new System.Windows.Forms.DataGridViewButtonColumn();
             this.OneToMany = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.lblCurrentAction = new System.Windows.Forms.Label();
+            this.grpBoxTables = new System.Windows.Forms.GroupBox();
+            this.grpBoxColumns = new System.Windows.Forms.GroupBox();
+            this.btnChooseTemplates = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridColumn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.columnBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridTable)).BeginInit();
@@ -61,6 +61,7 @@
             // 
             // cmbTables
             // 
+            this.cmbTables.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTables.FormattingEnabled = true;
             this.cmbTables.Location = new System.Drawing.Point(74, 9);
             this.cmbTables.Name = "cmbTables";
@@ -100,6 +101,54 @@
             this.dtGridColumn.Size = new System.Drawing.Size(394, 279);
             this.dtGridColumn.TabIndex = 2;
             // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            // 
+            // DbType
+            // 
+            this.DbType.DataPropertyName = "DbType";
+            this.DbType.HeaderText = "DbType";
+            this.DbType.Name = "DbType";
+            // 
+            // isPKDataGridViewCheckBoxColumn
+            // 
+            this.isPKDataGridViewCheckBoxColumn.DataPropertyName = "IsPK";
+            this.isPKDataGridViewCheckBoxColumn.HeaderText = "PK";
+            this.isPKDataGridViewCheckBoxColumn.Name = "isPKDataGridViewCheckBoxColumn";
+            this.isPKDataGridViewCheckBoxColumn.Width = 27;
+            // 
+            // isFKDataGridViewCheckBoxColumn
+            // 
+            this.isFKDataGridViewCheckBoxColumn.DataPropertyName = "IsFK";
+            this.isFKDataGridViewCheckBoxColumn.HeaderText = "FK";
+            this.isFKDataGridViewCheckBoxColumn.Name = "isFKDataGridViewCheckBoxColumn";
+            this.isFKDataGridViewCheckBoxColumn.Width = 27;
+            // 
+            // isAIDataGridViewCheckBoxColumn
+            // 
+            this.isAIDataGridViewCheckBoxColumn.DataPropertyName = "IsAI";
+            this.isAIDataGridViewCheckBoxColumn.HeaderText = "AI";
+            this.isAIDataGridViewCheckBoxColumn.Name = "isAIDataGridViewCheckBoxColumn";
+            this.isAIDataGridViewCheckBoxColumn.Width = 27;
+            // 
+            // isUNDataGridViewCheckBoxColumn
+            // 
+            this.isUNDataGridViewCheckBoxColumn.DataPropertyName = "IsUN";
+            this.isUNDataGridViewCheckBoxColumn.HeaderText = "UN";
+            this.isUNDataGridViewCheckBoxColumn.Name = "isUNDataGridViewCheckBoxColumn";
+            this.isUNDataGridViewCheckBoxColumn.Width = 27;
+            // 
+            // isNullAbleDataGridViewCheckBoxColumn
+            // 
+            this.isNullAbleDataGridViewCheckBoxColumn.DataPropertyName = "IsNullAble";
+            this.isNullAbleDataGridViewCheckBoxColumn.HeaderText = "NA";
+            this.isNullAbleDataGridViewCheckBoxColumn.Name = "isNullAbleDataGridViewCheckBoxColumn";
+            this.isNullAbleDataGridViewCheckBoxColumn.Width = 27;
+            // 
             // columnBindingSource
             // 
             this.columnBindingSource.DataSource = typeof(QuickCodeSel.Data.Entities.Column);
@@ -123,6 +172,32 @@
             this.dtGridTable.Size = new System.Drawing.Size(270, 279);
             this.dtGridTable.TabIndex = 3;
             this.dtGridTable.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGridTable_RowEnter);
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 40;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // OneToOne
+            // 
+            this.OneToOne.DataPropertyName = "OneToOne";
+            this.OneToOne.HeaderText = "1 to 1";
+            this.OneToOne.Name = "OneToOne";
+            this.OneToOne.Text = "Edit";
+            this.OneToOne.UseColumnTextForButtonValue = true;
+            this.OneToOne.Width = 42;
+            // 
+            // OneToMany
+            // 
+            this.OneToMany.DataPropertyName = "OneToMany";
+            this.OneToMany.HeaderText = "1 to N";
+            this.OneToMany.Name = "OneToMany";
+            this.OneToMany.Text = "Edit";
+            this.OneToMany.UseColumnTextForButtonValue = true;
+            this.OneToMany.Width = 42;
             // 
             // tableBindingSource
             // 
@@ -176,80 +251,6 @@
             this.btnChooseTemplates.Text = "Next";
             this.btnChooseTemplates.UseVisualStyleBackColor = true;
             this.btnChooseTemplates.Click += new System.EventHandler(this.btnChooseTemplates_Click);
-            // 
-            // nameDataGridViewTextBoxColumn1
-            // 
-            this.nameDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
-            // 
-            // DbType
-            // 
-            this.DbType.DataPropertyName = "DbType";
-            this.DbType.HeaderText = "DbType";
-            this.DbType.Name = "DbType";
-            // 
-            // isPKDataGridViewCheckBoxColumn
-            // 
-            this.isPKDataGridViewCheckBoxColumn.DataPropertyName = "IsPK";
-            this.isPKDataGridViewCheckBoxColumn.HeaderText = "PK";
-            this.isPKDataGridViewCheckBoxColumn.Name = "isPKDataGridViewCheckBoxColumn";
-            this.isPKDataGridViewCheckBoxColumn.Width = 27;
-            // 
-            // isFKDataGridViewCheckBoxColumn
-            // 
-            this.isFKDataGridViewCheckBoxColumn.DataPropertyName = "IsFK";
-            this.isFKDataGridViewCheckBoxColumn.HeaderText = "FK";
-            this.isFKDataGridViewCheckBoxColumn.Name = "isFKDataGridViewCheckBoxColumn";
-            this.isFKDataGridViewCheckBoxColumn.Width = 27;
-            // 
-            // isAIDataGridViewCheckBoxColumn
-            // 
-            this.isAIDataGridViewCheckBoxColumn.DataPropertyName = "IsAI";
-            this.isAIDataGridViewCheckBoxColumn.HeaderText = "AI";
-            this.isAIDataGridViewCheckBoxColumn.Name = "isAIDataGridViewCheckBoxColumn";
-            this.isAIDataGridViewCheckBoxColumn.Width = 27;
-            // 
-            // isUNDataGridViewCheckBoxColumn
-            // 
-            this.isUNDataGridViewCheckBoxColumn.DataPropertyName = "IsUN";
-            this.isUNDataGridViewCheckBoxColumn.HeaderText = "UN";
-            this.isUNDataGridViewCheckBoxColumn.Name = "isUNDataGridViewCheckBoxColumn";
-            this.isUNDataGridViewCheckBoxColumn.Width = 27;
-            // 
-            // isNullAbleDataGridViewCheckBoxColumn
-            // 
-            this.isNullAbleDataGridViewCheckBoxColumn.DataPropertyName = "IsNullAble";
-            this.isNullAbleDataGridViewCheckBoxColumn.HeaderText = "NA";
-            this.isNullAbleDataGridViewCheckBoxColumn.Name = "isNullAbleDataGridViewCheckBoxColumn";
-            this.isNullAbleDataGridViewCheckBoxColumn.Width = 27;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 40;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // OneToOne
-            // 
-            this.OneToOne.DataPropertyName = "OneToOne";
-            this.OneToOne.HeaderText = "1 to 1";
-            this.OneToOne.Name = "OneToOne";
-            this.OneToOne.Text = "Edit";
-            this.OneToOne.UseColumnTextForButtonValue = true;
-            this.OneToOne.Width = 42;
-            // 
-            // OneToMany
-            // 
-            this.OneToMany.DataPropertyName = "OneToMany";
-            this.OneToMany.HeaderText = "1 to N";
-            this.OneToMany.Name = "OneToMany";
-            this.OneToMany.Text = "Edit";
-            this.OneToMany.UseColumnTextForButtonValue = true;
-            this.OneToMany.Width = 42;
             // 
             // TableSelectionForm
             // 

@@ -30,6 +30,7 @@ namespace QuickCodeSel.Interface
 
         private void btnProcess_Click(object sender, EventArgs e)
         {
+            btnProcess.Enabled = false;
             progressBar.Maximum = Tables.Sum(item => item.SelectedTables.Count);
             progressBar.Step = 1;
             progressBar.Value = 0;
@@ -58,6 +59,7 @@ namespace QuickCodeSel.Interface
                 timer.Enabled = false;
                 progressBar.Value = progressBar.Maximum;
                 richTxtBoxLog.AppendText("[INFO]Finished.");
+                btnProcess.Enabled = true;
             });
         }
 

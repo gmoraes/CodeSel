@@ -14,7 +14,7 @@ using System.Xml;
 
 namespace QuickCodeSel.Debug
 {
-    class Process
+    class Process   
     {
         public string DebugEntity { get { return File.ReadAllText(Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]) + @"\DebugEntities\DebugEntity.xml"); } }
         public string DebugTemplates

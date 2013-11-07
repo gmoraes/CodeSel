@@ -154,14 +154,28 @@ namespace QuickCodeSel.Interface
             folderBrowserDialog.ShowDialog();
             foreach (DataGridViewRow row in dtGridTemplates.Rows)
             {
-                row.Cells["TemplateOutput"].Value = folderBrowserDialog.SelectedPath;
-                var content = File.ReadAllText(row.Cells["TemplatePath"].Value.ToString());
-                var index = content.IndexOf("appendPath=\"");
-                if (index > 0)
+                string concat = string.Empty;
+                try
                 {
-                    content = content.Substring(index).Replace("appendPath=\"", "");
-                    var concat = content.Substring(0, content.IndexOf("\""));
-                    concat = concat.StartsWith("\\") ? concat : "\\" + concat;
+                    row.Cells["TemplateOutput"].Value = folderBrowserDialog.SelectedPath;
+                    var content = String.Concat(File.ReadAllText(row.Cells["TemplatePath"].Value.ToString()).Split('\n').Where(line => line.StartsWith("<#@")));
+                    var index = content.IndexOf("appendPath=\"");
+                    if (index > 0)
+                    {
+                        try
+                        {
+                            content = content.Substring(index).Replace("appendPath=\"", "");
+                            concat = content.Substring(0, content.IndexOf("\""));
+                            concat = concat.StartsWith("\\") ? concat : "\\" + concat;
+                        }
+                        catch
+                        {
+                            concat = string.Empty;
+                        }
+                    }
+                }
+                finally 
+                {
                     row.Cells["TemplateOutput"].Value = String.Concat(folderBrowserDialog.SelectedPath, concat);
                 }
             }

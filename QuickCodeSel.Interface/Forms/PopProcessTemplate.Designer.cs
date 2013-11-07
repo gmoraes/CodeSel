@@ -51,6 +51,7 @@
             // 
             this.richTxtBoxLog.Location = new System.Drawing.Point(6, 19);
             this.richTxtBoxLog.Name = "richTxtBoxLog";
+            this.richTxtBoxLog.ReadOnly = true;
             this.richTxtBoxLog.Size = new System.Drawing.Size(451, 115);
             this.richTxtBoxLog.TabIndex = 2;
             this.richTxtBoxLog.Text = "";

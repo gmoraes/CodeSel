@@ -125,8 +125,6 @@ namespace QuickCodeSel.Interface
                             TablesToOne.ContainsKey(Table.Name) ? TablesToOne[Table.Name].Contains(item.Name) : false)
                         .ToList();
                 }
-                //Table.ToOneTables = Entities.Table.ListOneToOneTables(Table.Name, cmbTables.SelectedValue.ToString());
-                //Table.ToManyTables = Entities.Table.ListOneToManyTables(Table.Name, cmbTables.SelectedValue.ToString());
                 progressBar.PerformStep();
             }
 
