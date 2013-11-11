@@ -13,7 +13,6 @@ namespace QuickCodeSel.Interface.InterfaceEntities
         public static Dictionary<string, string> Parameters = new Dictionary<string, string>();
         public Host.Configuration Configuration { get; set; }
 
-        public bool Selected { get; set; }
         public string TemplateName { get; set; }
         public string TemplatePath { get; set; }
         public string TemplateOutput { get; set; }

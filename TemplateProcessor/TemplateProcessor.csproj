@@ -31,8 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="mono.texttemplating">
-      <HintPath>..\Componentes\mono.texttemplating.dll</HintPath>
+    <Reference Include="mono.texttemplating, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Augusto\Documents\Visual Studio 2010\Projects\QuickCodeSel\Componentes\mono.texttemplating.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
