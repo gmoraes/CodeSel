@@ -1,21 +1,122 @@
 ﻿<#@ template language="C#" debug="true" HostSpecific="true" #>
-<#@ output extension="cs" appendPath="\{Entity}\Teste"#>
+<#@ output extension="cs" appendPath="Teste\{Entity}"#>
 <#@ import namespace="Entities = QuickCodeSel.Data.Entities"#>
 <#@ import namespace="Util = QuickCodeSel.Util"#>
 <#@ import namespace="Host = QuickCodeSel.TemplateProcessor"#>
-<#@ import namespace="System.Collections.Generic" #>
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Data.Common;
-using System.Text;
+<#@ import namespace="System.Collections.Generic"#>
 
 <#
 	Host.QuickCodeSelHost quickCodeSelHost = (Host.QuickCodeSelHost)Host;
-	Entities.Table table = quickCodeSelHost.GetParameter<Entities.Table>("Table");
-    string Namesapce = quickCodeSelHost.GetParameter<string>("Namespace");
+	Entities.Table table = (Entities.Table)quickCodeSelHost.Data;
+    string Namespace = quickCodeSelHost.GetParameter("Namespace");
 #>
 
-O OBJECT é IGUAL ANULL? <#=(this.Host == null).ToString()#>
-O OBJECT é IGUAL ANULL? <#=((object)this.Host).GetType()#>
-TABLE: <#=table.ToXml()#>
+	O exemplo abaixo mostra uma tabela e seus relacionamentos até o 5º nivel.
+	Este template serve para mostrar o relacionamento cíclico dos objetos do tipo Table.
+
+	TABLE:<#=table.CSName#>
+
+	TO ONE
+
+	<#foreach(var tableA in table.ToOneTables)
+	{#>
+		Level 1 :<#=tableA.CSName#>
+		<#foreach(var tableB in tableA.ToOneTables)
+		{#>
+				Level 2 : <#=tableB.CSName#>
+			<#foreach(var tableC in tableB.ToOneTables)
+			{#>
+						Level 3 : <#=tableC.CSName#>
+				<#foreach(var tableD in tableC.ToOneTables)
+				{#>
+								Level 4 : <#=tableD.CSName#>
+					<#foreach(var tableE in tableD.ToOneTables)
+					{#>
+										Level 5 : <#=tableE.CSName#>
+					<#}
+				}
+			}
+		}
+	}#>
+	
+	TO MANY
+	
+		<#foreach(var tableA in table.ToManyTables)
+	{#>
+		Level 1 :<#=tableA.CSName#>
+		<#foreach(var tableB in tableA.ToManyTables)
+		{#>
+				Level 2 : <#=tableB.CSName#>
+			<#foreach(var tableC in tableB.ToManyTables)
+			{#>
+						Level 3 : <#=tableC.CSName#>
+				<#foreach(var tableD in tableC.ToManyTables)
+				{#>
+								Level 4 : <#=tableD.CSName#>
+					<#foreach(var tableE in tableD.ToManyTables)
+					{#>
+										Level 5 : <#=tableE.CSName#>
+					<#}
+				}
+			}
+		}
+	}#>
+	
+		//Exemplo de Insert Criado pelo template.
+		public virtual void Incluir(Entidades.<#=table.CSName#> l<#=table.CSName#>)
+        {
+<#bool isPKAI = table.PKAIList.Count > 0;#>
+            StringBuilder SQL = new StringBuilder();
+            SQL.AppendLine("INSERT INTO <#=table.Name#>(");
+<#for(int i = 0;i<table.Columns.Count;i++){#>
+            SQL.AppendLine("            <#=table.Columns[i].Name#><#=i==table.Columns.Count-1 ? "" : ","#>");
+<#}#>
+            SQL.AppendLine(") VALUES (");
+<#for(int i = 0;i<table.Columns.Count;i++){#>
+            SQL.AppendLine("            ?<#=table.Columns[i].Name#><#=i==table.Columns.Count-1 ? "" : ","#>");
+<#}#>
+            SQL.AppendLine(" );");
+<#if (isPKAI)
+{#>
+			SQL.AppendLine(Environment.NewLine);
+            SQL.AppendLine("SELECT LAST_INSERT_ID();");
+<#}#>
+            //Criação do command com seus parametros
+            System.Data.Common.DbCommand Command = GetSqlStringCommand(SQL.ToString());
+			
+<#foreach(Entities.Column column in table.Columns){#>
+			base.AddInParameter(Command, "<#=column.Name#>", l<#=table.CSName#>.<#=column.CSharpName#>);
+<#}#>
+<#if (isPKAI)
+{#>
+		    //Recupera o Valor do Identity incluso no banco de dados
+            l<#=table.CSName#>.Codigo<#=table.CSName#> = Convert.ToInt32(ExecuteScalar(Command));
+<#}
+else
+{#>
+			ExecuteNonQuery(Command);
+<#}#>
+        }
+		
+namespace <#=Namespace#>.Dados.Entidades
+{
+	public class <#=table.CSName #> : Base
+	{
+<#foreach(Entities.Column column in table.Columns){#>
+		public <#=column.CSharpType#> <#=column.CSharpName#> { get; set; }
+<#}#>
+
+<#foreach(Entities.Table toOneTable in table.ToOneTables){#>
+		public Entidades.<#=toOneTable.CSName#> <#=toOneTable.CSName#> { get; set; }
+<#}#>
+
+<#foreach(Entities.Table toOneTable in table.ToManyTables){#>
+		public List<Entidades.<#=toOneTable.CSName#>> <#=toOneTable.CSName#>Colecao { get; set; }
+<#}#>
+
+		public <#=table.CSName#>()
+		{
+		
+		}
+	}
+}
