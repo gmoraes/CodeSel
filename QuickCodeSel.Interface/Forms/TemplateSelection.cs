@@ -96,6 +96,21 @@ namespace QuickCodeSel.Interface
                     MessageBox.Show("All templates must have at least one table selected!", "Error!");
                     return;
                 }
+
+                foreach (var table in tableTemplate)
+                {
+                    if (!File.Exists(table.TemplatePath))
+                    {
+                        MessageBox.Show(String.Format("The template {0} does not exist anymore.\nIt must have been deleted or the application lacks the necessary permissions to access it.", table.TemplatePath),"Error!");
+                        return;                    
+                    }
+                    if (!table.TemplateOutput.Contains("{Entity}")) 
+                    {
+                        MessageBox.Show(String.Format("The template {0} does not contain the directive Entity between braces. Without it the generated files will always be overwritten.", table.TemplateOutput), "Error!");
+                        return;
+                    }
+                }
+
                 if (MessageBox.Show("Would you like to debug the templates before processing them?", "Warning!", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     if (string.IsNullOrEmpty(DebugEntity))
@@ -157,6 +172,11 @@ namespace QuickCodeSel.Interface
                 string concat = string.Empty;
                 try
                 {
+                    if (!File.Exists(row.Cells["TemplatePath"].Value.ToString()))
+                    {
+                        MessageBox.Show(String.Format("The template {0} does not exist anymore.\nIt must have been deleted or the application lacks the necessary permissions to access it.", row.Cells["TemplatePath"].Value.ToString()), "Error!");
+                        continue;
+                    }
                     row.Cells["TemplateOutput"].Value = folderBrowserDialog.SelectedPath;
                     var content = String.Concat(File.ReadAllText(row.Cells["TemplatePath"].Value.ToString()).Split('\n').Where(line => line.StartsWith("<#@")));
                     var index = content.IndexOf("appendPath=\"");
@@ -174,7 +194,7 @@ namespace QuickCodeSel.Interface
                         }
                     }
                 }
-                finally 
+                finally
                 {
                     row.Cells["TemplateOutput"].Value = String.Concat(folderBrowserDialog.SelectedPath, concat);
                 }

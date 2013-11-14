@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Entities = QuickCodeSel.Data.Entities;
 
@@ -32,7 +28,6 @@ namespace QuickCodeSel.Interface
                 TableSelectionForm tableSelection = new TableSelectionForm(Databases);
                 this.Hide();
                 tableSelection.ShowDialog();
-                this.Close();
             }
             catch(Exception ex)
             {
@@ -51,6 +46,7 @@ namespace QuickCodeSel.Interface
                 btnConnect.Enabled = true;
                 btnConnect.Text = "Connect";
                 this.Cursor = Cursors.Arrow;
+                this.Close();
             }
         }
     }
