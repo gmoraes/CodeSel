@@ -123,7 +123,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\DataSources\QuickCodeSel.Data.Entities.Column.datasource" />
     <None Include="Properties\DataSources\QuickCodeSel.Data.Entities.Table.datasource" />
     <None Include="Properties\DataSources\QuickCodeSel.Interface.InterfaceEntities.TableTemplate.datasource" />

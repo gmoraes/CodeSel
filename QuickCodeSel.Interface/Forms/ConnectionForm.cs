@@ -28,9 +28,11 @@ namespace QuickCodeSel.Interface
                 TableSelectionForm tableSelection = new TableSelectionForm(Databases);
                 this.Hide();
                 tableSelection.ShowDialog();
+                this.Close();
             }
             catch(Exception ex)
             {
+                this.Show();
                 if (ex.GetType().ToString().Contains("MySqlException")) 
                 {
                     lblCurrentAction.ForeColor = Color.Red;
@@ -42,10 +44,21 @@ namespace QuickCodeSel.Interface
                 }
             }
             finally 
-            { 
+            {
                 btnConnect.Enabled = true;
                 btnConnect.Text = "Connect";
                 this.Cursor = Cursors.Arrow;
+            }
+        }
+
+        private void txtConnection_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode.Equals(Keys.Enter))
+            {
+                btnConnect.PerformClick();
+            }
+            else if (e.KeyCode.Equals(Keys.Escape)) 
+            {
                 this.Close();
             }
         }

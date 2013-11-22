@@ -59,6 +59,7 @@
             this.dtGridTablesTemplate.RowHeadersVisible = false;
             this.dtGridTablesTemplate.Size = new System.Drawing.Size(264, 306);
             this.dtGridTablesTemplate.TabIndex = 1;
+            this.dtGridTablesTemplate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtGridTablesTemplate_KeyDown);
             // 
             // CheckTable
             // 

@@ -24,7 +24,7 @@ namespace QuickCodeSel.Util
                 CamelCasedName += FirstToUpper(parts[i]) + (parts.Length - 1 == i ? "" : Separator);
             }
 
-            return CamelCasedName;
+            return String.IsNullOrEmpty(CamelCasedName) ? Name.ToUpper() : CamelCasedName;
         }
 
         private static string FirstToUpper(string Value)

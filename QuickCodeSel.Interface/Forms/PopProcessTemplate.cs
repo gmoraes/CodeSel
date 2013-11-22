@@ -18,6 +18,7 @@ namespace QuickCodeSel.Interface
     {
         ThreadStart thread;
         Thread thrd;
+        DateTime StartTime = DateTime.Now;
 
         List<InterfaceEntities.TableTemplate> Tables;
         public Queue<string> Messages = new Queue<string>();
@@ -30,6 +31,10 @@ namespace QuickCodeSel.Interface
 
         private void btnProcess_Click(object sender, EventArgs e)
         {
+            richTxtBoxLog.Clear();
+            StartTime = DateTime.Now;
+            richTxtBoxLog.AppendText("[INFO]Started at " + StartTime.ToString("dd-MM-yyyy HH:mm:ss"));
+            richTxtBoxLog.AppendText(Environment.NewLine);
             btnProcess.Enabled = false;
             progressBar.Maximum = Tables.Sum(item => item.SelectedTables.Count);
             progressBar.Step = 1;
@@ -58,7 +63,10 @@ namespace QuickCodeSel.Interface
             {
                 timer.Enabled = false;
                 progressBar.Value = progressBar.Maximum;
-                richTxtBoxLog.AppendText("[INFO]Finished.");
+                richTxtBoxLog.AppendText("\n[INFO]Finished at " + DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss"));
+                richTxtBoxLog.AppendText("\n-------------------------------------------------------------------");
+                richTxtBoxLog.AppendText("\n[INFO]Elapsed Time: " + StartTime.Subtract(DateTime.Now).ToString());
+                richTxtBoxLog.AppendText("\n-------------------------------------------------------------------");
                 btnProcess.Enabled = true;
             });
         }

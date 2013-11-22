@@ -45,9 +45,25 @@ namespace QuickCodeSel.Interface
             lblErrorMessage.Text = "Cleared.";
         }
 
-        private void PopAddGlobalParameter_KeyDown(object sender, KeyEventArgs e)
+        private void txtKey_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape) 
+            if (e.KeyCode.Equals(Keys.Enter))
+            {
+                btnAddParameter.PerformClick();
+            }
+            else if (e.KeyCode.Equals(Keys.Escape))
+            {
+                this.Close();
+            }
+        }
+
+        private void txtValue_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.Equals(Keys.Enter))
+            {
+                btnAddParameter.PerformClick();
+            }
+            else if (e.KeyCode.Equals(Keys.Escape))
             {
                 this.Close();
             }

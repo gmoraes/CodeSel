@@ -44,6 +44,7 @@
             this.txtKey.Name = "txtKey";
             this.txtKey.Size = new System.Drawing.Size(167, 20);
             this.txtKey.TabIndex = 0;
+            this.txtKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKey_KeyDown);
             // 
             // txtValue
             // 
@@ -51,6 +52,7 @@
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(167, 20);
             this.txtValue.TabIndex = 1;
+            this.txtValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValue_KeyDown);
             // 
             // lvlKey
             // 
@@ -119,7 +121,6 @@
             this.Name = "PopAddGlobalParameter";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Global Parameters";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PopAddGlobalParameter_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

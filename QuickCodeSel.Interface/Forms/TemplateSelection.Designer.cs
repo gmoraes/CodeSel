@@ -175,7 +175,7 @@
             this.btnProcessTemplate.Name = "btnProcessTemplate";
             this.btnProcessTemplate.Size = new System.Drawing.Size(75, 23);
             this.btnProcessTemplate.TabIndex = 5;
-            this.btnProcessTemplate.Text = "    Start";
+            this.btnProcessTemplate.Text = "    Next";
             this.btnProcessTemplate.UseVisualStyleBackColor = true;
             this.btnProcessTemplate.Click += new System.EventHandler(this.btnProcessTemplate_Click);
             // 

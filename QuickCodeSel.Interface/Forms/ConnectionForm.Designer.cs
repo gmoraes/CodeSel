@@ -41,7 +41,8 @@
             this.txtConnection.Name = "txtConnection";
             this.txtConnection.Size = new System.Drawing.Size(451, 20);
             this.txtConnection.TabIndex = 0;
-            this.txtConnection.Text = "Persist Security Info=True; User ID=root;Password=root; Data Source=localhost";
+            this.txtConnection.Text = "User ID=root;Password=root; Data Source=localhost";
+            this.txtConnection.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtConnection_KeyDown);
             // 
             // lblConnection
             // 
